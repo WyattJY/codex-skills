@@ -3,6 +3,9 @@ skills/codex-downloads
 skills/codex-downloads/bilibili-render-pdf
 skills/codex-downloads/bilibili-render-pdf/agents
 skills/codex-downloads/bilibili-render-pdf/assets
+skills/codex-downloads/youtube-render-pdf
+skills/codex-downloads/youtube-render-pdf/agents
+skills/codex-downloads/youtube-render-pdf/assets
 skills/codex-downloads/subtitle-refine
 skills/codex-downloads/subtitle-refine.backup-20260421-122932
 skills/codex-downloads/subtitle-refine.backup-20260421-122932/agents

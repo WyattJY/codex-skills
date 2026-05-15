@@ -1,6 +1,9 @@
 skills/codex-downloads/bilibili-render-pdf/SKILL.md
 skills/codex-downloads/bilibili-render-pdf/agents/openai.yaml
 skills/codex-downloads/bilibili-render-pdf/assets/notes-template.tex
+skills/codex-downloads/youtube-render-pdf/SKILL.md
+skills/codex-downloads/youtube-render-pdf/agents/openai.yaml
+skills/codex-downloads/youtube-render-pdf/assets/notes-template.tex
 skills/codex-downloads/subtitle-refine.backup-20260421-122932/SKILL.md
 skills/codex-downloads/subtitle-refine.backup-20260421-122932/agents/openai.yaml
 skills/codex-downloads/subtitle-refine.backup-20260421-122932/scripts/check_clean_srt.py
