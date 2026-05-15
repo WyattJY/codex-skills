@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image Tech MD Rebuilder"
+  short_description: "Rebuild technical Markdown from screenshots."
+  default_prompt: "Use $image-tech-md-rebuilder to rebuild a complete technical Markdown document from this image folder: <path>"

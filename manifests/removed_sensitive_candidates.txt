@@ -1,0 +1,2 @@
+skills/wyatt-claude/settings.json
+skills/wyatt-claude/settings.json.bak-20260328-232325
