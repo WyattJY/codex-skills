@@ -1,0 +1,7 @@
+interface:
+  display_name: "姜煜 Word 报告格式"
+  short_description: "按姜煜实习交接报告版式生成技术类Word文档"
+  default_prompt: "Use $jiangyu-word-report-style to create a Word report in Jiangyu's handover-document format."
+
+policy:
+  allow_implicit_invocation: true
