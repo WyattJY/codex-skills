@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audio Screenshot Course Notes"
+  short_description: "Turn recordings and screenshots into Obsidian notes"
+  default_prompt: "Use $audio-screenshot-course-notes to turn this lecture recording and screenshots into an Obsidian Markdown course note."

@@ -2459,3 +2459,9 @@ skills/wyatt-claude/nwafu-thesis-writing
 skills/wyatt-claude/nwafu-thesis-writing/references
 skills/wyatt-claude/skill-creator
 skills/wyatt-claude/skill-creator/scripts
+skills/mac-codex/audio-screenshot-course-notes
+skills/mac-codex/audio-screenshot-course-notes/agents
+skills/mac-codex/audio-screenshot-course-notes/scripts
+skills/codex-downloads/audio-screenshot-course-notes
+skills/codex-downloads/audio-screenshot-course-notes/agents
+skills/codex-downloads/audio-screenshot-course-notes/scripts

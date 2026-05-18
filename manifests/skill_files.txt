@@ -873,3 +873,5 @@ skills/wyatt-claude/canvas-design/SKILL.md
 skills/wyatt-claude/cucumber-irrigation-frontend/SKILL.md
 skills/wyatt-claude/nwafu-thesis-writing/SKILL.md
 skills/wyatt-claude/skill-creator/SKILL.md
+skills/mac-codex/audio-screenshot-course-notes/SKILL.md
+skills/codex-downloads/audio-screenshot-course-notes/SKILL.md

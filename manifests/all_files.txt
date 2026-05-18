@@ -6710,3 +6710,9 @@ skills/wyatt-claude/skill-creator/SKILL.md
 skills/wyatt-claude/skill-creator/scripts/init_skill.py
 skills/wyatt-claude/skill-creator/scripts/package_skill.py
 skills/wyatt-claude/skill-creator/scripts/quick_validate.py
+skills/mac-codex/audio-screenshot-course-notes/SKILL.md
+skills/mac-codex/audio-screenshot-course-notes/agents/openai.yaml
+skills/mac-codex/audio-screenshot-course-notes/scripts/check_markdown_assets.py
+skills/codex-downloads/audio-screenshot-course-notes/SKILL.md
+skills/codex-downloads/audio-screenshot-course-notes/agents/openai.yaml
+skills/codex-downloads/audio-screenshot-course-notes/scripts/check_markdown_assets.py

@@ -20,9 +20,9 @@ came from.
 
 Current export summary:
 
-- `875` `SKILL.md` files
-- `511` unique skill directory names
-- `6712` tracked candidate files before Git filtering
+- `877` `SKILL.md` files
+- `512` unique skill directory names
+- `6718` tracked candidate files before Git filtering
 - about `1.2G` on the T7 Shield volume
 
 High-signal recovered paths include:

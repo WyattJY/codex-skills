@@ -509,3 +509,4 @@ yeet
 youtube-content
 youtube-render-pdf
 yuanbao
+audio-screenshot-course-notes
