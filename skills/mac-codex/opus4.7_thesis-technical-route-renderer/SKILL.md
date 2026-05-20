@@ -1,9 +1,9 @@
 ---
-name: kimi_thesis-technical-route-renderer
-description: Render thesis-style 技术路线图 (technical route diagrams) from a declarative JSON spec to high-DPI PNG plus a matching .drawio source. Paper-friendly black/white/grey style, rounded blocks, orthogonal 3-segment routing for Y/T junctions, dashed centre-line connectors between sections. Use when the user asks to (re)make 论文图1-1 / 技术路线图 / 流程图 / architecture diagram for a thesis, and wants both a publication-ready PNG and an editable .drawio. Tuned for Chinese theses; auto-detects CJK fonts on macOS / Windows / Linux.
+name: opus4.7_thesis-technical-route-renderer
+description: Render thesis-style 技术路线图 (technical route diagrams) from a declarative JSON spec to high-DPI PNG plus a matching .drawio source. Paper-friendly black/white/grey style, rounded blocks, orthogonal 3-segment routing for Y/T junctions, dashed centre-line connectors between sections. Use when the user asks to (re)make 论文图1-1 / 技术路线图 / 流程图 / architecture diagram for a thesis, and wants both a publication-ready PNG and an editable .drawio. Tuned for Chinese theses; auto-detects CJK fonts on macOS / Windows / Linux. Authored with Claude Opus 4.7.
 ---
 
-# Thesis Technical Route Renderer
+# opus4.7_thesis-technical-route-renderer
 
 Render a thesis 技术路线图 from one JSON spec into:
 
@@ -167,7 +167,7 @@ rather than colouring blocks; thesis figures should remain print-safe.
 ## Files
 
 ```
-thesis-technical-route-renderer/
+opus4.7_thesis-technical-route-renderer/
 ├── SKILL.md
 ├── scripts/
 │   ├── render_technical_route.py   # main renderer (PNG + .drawio)
