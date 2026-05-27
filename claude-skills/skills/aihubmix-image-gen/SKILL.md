@@ -1,9 +1,9 @@
 ---
 name: aihubmix-image-gen
-description: Use when UI Designer needs to generate a product UI draft image from a product spec, design tokens, or layout prompt via the configured AIHubMix image model.
+description: Use when UI Designer needs to generate a product UI draft image from a product spec, design tokens, or layout prompt via the configured CPA or OpenAI-compatible image model.
 ---
 
-# AIHubMix Image Generation
+# UI Image Generation
 ## Claude Code Adaptation
 
 - This copy is prepared for Claude Code personal or project skills.
@@ -18,9 +18,8 @@ description: Use when UI Designer needs to generate a product UI draft image fro
 ## Environment
 Read credentials only from environment or `.env`:
 - `CLAUDE_UI_IMAGE_API_KEY or CODEX_UI_IMAGE_API_KEY`, `CLAUDE_UI_IMAGE_BASE_URL or CODEX_UI_IMAGE_BASE_URL`, `CLAUDE_UI_IMAGE_MODEL or CODEX_UI_IMAGE_MODEL`
-- `AIHUBMIX_API_KEY` or compatible `OPENAI_API_KEY`
-- `AIHUBMIX_BASE_URL`
-- `AIHUBMIX_IMAGE_MODEL`
+- `CPA_IMAGE_API_KEY`, `CPA_IMAGE_BASE_URL`, `CPA_IMAGE_MODEL`
+- compatible `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_IMAGE_MODEL`
 
 ## Workflow
 1. Convert the product spec into one concrete visual prompt.
@@ -31,6 +30,6 @@ Read credentials only from environment or `.env`:
 
 ## Hard rules
 - Never print API keys, tokens, `.env`, cookies, or account files.
-- Do not hard-code model names; use `CLAUDE_UI_IMAGE_MODEL or CODEX_UI_IMAGE_MODEL` or `AIHUBMIX_IMAGE_MODEL`.
+- Do not hard-code model names; use `CLAUDE_UI_IMAGE_MODEL`, `CODEX_UI_IMAGE_MODEL`, `CPA_IMAGE_MODEL`, or `OPENAI_IMAGE_MODEL`.
 - Image drafts are for UI direction only; final frontend implementation must still follow the G0-G9 gate.
 - Do not generate UI that requests or displays company raw data.

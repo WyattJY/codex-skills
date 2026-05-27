@@ -1,15 +1,14 @@
 ---
 name: nwafu-thesis-writing
-description: Write Northwest A&F University (西北农林科技大学, NWAFU) master’s thesis content with the correct author–year (著者-出版年) in-text citations and GB/T 7714-2015 author–year (gb7714-2015ay) bibliography style. Use when drafting or revising thesis sections/chapters (摘要/文献综述/方法/系统设计等), converting a paper (e.g., manuscript.docx) into thesis writing, or checking/fixing citation + reference list formatting for the nwafuthesis LaTeX template or Word/Markdown drafts (e.g., “Li et al., 2024” style).
+description: "Write Northwest A&F University (西北农林科技大学, NWAFU) master’s thesis content with the correct author–year (著者-出版年) in-text citations and GB/T 7714-2015 author–year (gb7714-2015ay) bibliography style. Use when drafting or revising thesis sections/chapters (摘要/文献综述/方法/系统设计等), converting a paper (e.g., manuscript.docx) into thesis writing, or checking/fixing citation + reference list formatting for the nwafuthesis LaTeX template or Word/Markdown drafts (e.g., “Li et al., 2024” style)."
 ---
 
 
-# NWAFU Master Thesis Writing & Citations
-## Claude Code Adaptation
+## Claude Code Migration Notes
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
+# NWAFU Master Thesis Writing & Citations
 
 ## Quick Start
 

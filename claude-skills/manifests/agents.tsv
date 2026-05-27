@@ -1,0 +1,14 @@
+agent	source_path	target_path
+wyatt-backend-engineer.md	/Users/jiangyu/.claude/agents/wyatt-backend-engineer.md	claude-skills/agents/wyatt-backend-engineer.md
+wyatt-devops-release.md	/Users/jiangyu/.claude/agents/wyatt-devops-release.md	claude-skills/agents/wyatt-devops-release.md
+wyatt-frontend-engineer.md	/Users/jiangyu/.claude/agents/wyatt-frontend-engineer.md	claude-skills/agents/wyatt-frontend-engineer.md
+wyatt-hikvision-codec-stage1.md	/Users/jiangyu/.claude/agents/wyatt-hikvision-codec-stage1.md	claude-skills/agents/wyatt-hikvision-codec-stage1.md
+wyatt-memory-archivist.md	/Users/jiangyu/.claude/agents/wyatt-memory-archivist.md	claude-skills/agents/wyatt-memory-archivist.md
+wyatt-product-manager.md	/Users/jiangyu/.claude/agents/wyatt-product-manager.md	claude-skills/agents/wyatt-product-manager.md
+wyatt-qa-engineer.md	/Users/jiangyu/.claude/agents/wyatt-qa-engineer.md	claude-skills/agents/wyatt-qa-engineer.md
+wyatt-research-analyst.md	/Users/jiangyu/.claude/agents/wyatt-research-analyst.md	claude-skills/agents/wyatt-research-analyst.md
+wyatt-reviewer-bot.md	/Users/jiangyu/.claude/agents/wyatt-reviewer-bot.md	claude-skills/agents/wyatt-reviewer-bot.md
+wyatt-scholar.md	/Users/jiangyu/.claude/agents/wyatt-scholar.md	claude-skills/agents/wyatt-scholar.md
+wyatt-system-architect.md	/Users/jiangyu/.claude/agents/wyatt-system-architect.md	claude-skills/agents/wyatt-system-architect.md
+wyatt-ui-designer.md	/Users/jiangyu/.claude/agents/wyatt-ui-designer.md	claude-skills/agents/wyatt-ui-designer.md
+PRODUCT_TEAM_ROUTING.md	/Users/jiangyu/.hermes-wyatt/agents/PRODUCT_TEAM_ROUTING.md	claude-skills/agents/PRODUCT_TEAM_ROUTING.md

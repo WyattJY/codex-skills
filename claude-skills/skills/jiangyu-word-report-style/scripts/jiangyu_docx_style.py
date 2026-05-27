@@ -2,7 +2,7 @@
 """Reusable python-docx helpers for Jiangyu's Word report style.
 
 Copy this script into the active workspace, fill in `write_report`, and run it
-with the bundled Claude Code Python runtime. It intentionally avoids project-specific
+with the bundled Codex Python runtime. It intentionally avoids project-specific
 content so future reports can reuse the exact typography and table style.
 """
 

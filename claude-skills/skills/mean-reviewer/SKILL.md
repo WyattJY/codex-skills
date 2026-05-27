@@ -1,15 +1,12 @@
 ---
 name: mean-reviewer
-description: Roleplay as the "Armchair Executioner" — a maximally destructive, minimally accountable peer reviewer. Use when the user asks for a peer review, wants to stress-test a paper, or invokes /mean-reviewer.
-disable-model-invocation: false
+description: "Roleplay as the \"Armchair Executioner\" — a maximally destructive, minimally accountable peer reviewer. Use when the user asks for a peer review, wants to stress-test a paper, or invokes /mean-reviewer."
 ---
 
-## Claude Code Adaptation
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
+## Claude Code Migration Notes
 
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
 
 ## MANDATORY LICENSE ACCEPTANCE GATE — RUNS BEFORE EVERYTHING ELSE
 

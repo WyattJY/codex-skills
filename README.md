@@ -17,14 +17,13 @@ came from.
 - `skills/wyatt-claude/` - from `/Volumes/T7 Shield/Wyatt/.claude/skills`
 - `skills/codex-downloads/` - from `/Volumes/T7 Shield/codex_downloads/skills`
 - `skills/t7-shield-full/` - path-preserving export of the T7 scan recorded in `manifests/t7_candidate_skill_files_outside_export.txt`
-- `claude-skills/` - Claude Code-ready mirror generated from the current Windows user-managed Codex skill roots
 
 Current export summary:
 
-- `927` `SKILL.md` files
-- `526` unique skill directory names
-- `7229` tracked candidate files before Git filtering
-- about `1.2G` on the T7 Shield volume
+- `826` `SKILL.md` files in the current repository snapshot
+- `322` unique skill directory names in the current repository snapshot
+- `6753` exported files, excluding `.git/`
+- about `1.3G` on the T7 Shield volume
 
 High-signal recovered paths include:
 
@@ -74,3 +73,11 @@ directories into that machine's Codex skills root, usually:
 
 Keep this repository as the canonical backup on GitHub, and keep local runtime
 or dependency installs on the T7 Shield unless explicitly changed later.
+
+## Claude Code Migration
+
+- `claude-skills/` - Claude Code-compatible plugin-style export generated from the current local Codex skills plus the Hermes product-team skill layer.
+- Current migrated parity: `69` Codex source skills -> `69` Claude target skills; `14` Hermes local skills -> `14` Claude target skills; `1` Claude-native `wyatt-product-team` entrypoint.
+- Active Claude Code skills installed under `~/.claude/skills`: `84`.
+- Review evidence: `claude-skills/MIGRATION_REVIEW.md` and `claude-skills/manifests/format_review.tsv`.
+- Claude/Hermes role agents, including the product manager agent, are copied under `claude-skills/agents/`.

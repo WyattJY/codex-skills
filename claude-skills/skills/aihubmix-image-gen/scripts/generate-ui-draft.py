@@ -42,7 +42,7 @@ def write_json(path: Path, obj: object) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate or dry-run a UI draft image through AIHubMix/OpenAI-compatible image API.")
+    parser = argparse.ArgumentParser(description="Generate or dry-run a UI draft image through CPA/OpenAI-compatible image API.")
     parser.add_argument("--prompt", default="")
     parser.add_argument("--prompt-file", default="")
     parser.add_argument("--out-dir", default="tmp/ui-drafts")
@@ -66,13 +66,15 @@ def main() -> None:
 
     base_url = (
         os.environ.get("CLAUDE_UI_IMAGE_BASE_URL") or os.environ.get("CODEX_UI_IMAGE_BASE_URL")
+        or os.environ.get("CPA_IMAGE_BASE_URL")
         or os.environ.get("AIHUBMIX_BASE_URL")
         or os.environ.get("OPENAI_BASE_URL")
-        or "https://aihubmix.com/v1"
+        or "https://cpa.lobewyatt.icu/v1"
     )
-    model = os.environ.get("CLAUDE_UI_IMAGE_MODEL") or os.environ.get("CODEX_UI_IMAGE_MODEL") or os.environ.get("AIHUBMIX_IMAGE_MODEL") or "gpt-image-2"
+    model = os.environ.get("CLAUDE_UI_IMAGE_MODEL") or os.environ.get("CODEX_UI_IMAGE_MODEL") or os.environ.get("CPA_IMAGE_MODEL") or os.environ.get("AIHUBMIX_IMAGE_MODEL") or os.environ.get("OPENAI_IMAGE_MODEL") or "gpt-image-2"
     api_key = (
         os.environ.get("CLAUDE_UI_IMAGE_API_KEY") or os.environ.get("CODEX_UI_IMAGE_API_KEY")
+        or os.environ.get("CPA_IMAGE_API_KEY")
         or os.environ.get("AIHUBMIX_API_KEY")
         or os.environ.get("OPENAI_API_KEY")
         or ""
