@@ -42,8 +42,8 @@ lark-cli okr +upload-image \
 
 ```json
 {
-  "file_token": "example-file-token",
-  "url": "https://example.larksuite.com/download?file_token=example-file-token",
+  "file_token": "<file_token>",
+  "url": "https://example.larksuite.com/download?file_token=<file_token>",
   "file_name": "screenshot.png",
   "size": 102400
 }

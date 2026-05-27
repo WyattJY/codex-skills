@@ -5,7 +5,7 @@ claude_package_count	pass	claude-skills/skills has 84 skill directories and 84 S
 local_claude_install_count	pass	/Users/jiangyu/.claude/skills has 84 skill directories and 84 SKILL.md files.
 frontmatter_validation	pass	Custom validator checked package and local install: dirs=84, issues=0 for both.
 claude_plugin_validate	pass	/Users/jiangyu/.hermes/node/bin/claude-real plugins validate claude-skills returned "Validation passed".
-claude_model_route	configured-auth-blocked	Settings and agents point to CPA-backed Xiaomi MiMo model mimo-v2.5-pro, but claude-cpa smoke test returned CPA auth_unavailable for mimo-v2.5-pro.
+claude_model_route	pass	Settings, VS Code, default claude symlink, and Wyatt/Hermes agents point to official direct Xiaomi MiMo model mimo-v2.5-pro via https://api.xiaomimimo.com/anthropic; claude -p smoke test returned OK.
 claude_agents_model	pass	12 local Wyatt Claude agents and 13 package agent/routing files use model: mimo-v2.5-pro.
 hermes_workflow_validation	pass	PYTHONPYCACHEPREFIX=/private/tmp/hermes_pycache python3 validate_wyatt_workflow.py returned ok=true.
 hermes_workflow_tests	pass	python3 test_wyatt_workflow.py -v ran 5 tests: OK.

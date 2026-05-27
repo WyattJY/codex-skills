@@ -26,7 +26,7 @@ This makes the migrated Codex-to-Claude skill count equal for the current local 
 
 Some skills are format-compatible but still depend on local runtime tools or Claude-side equivalents:
 
-- Claude Code model route: local Claude Code and all Wyatt/Hermes Claude agents are configured for CPA-backed Xiaomi MiMo, model `mimo-v2.5-pro`.
+- Claude Code model route: local Claude Code and all Wyatt/Hermes Claude agents are configured for Xiaomi MiMo's official Anthropic-compatible direct endpoint, model `mimo-v2.5-pro`.
 - Hermes product manager / product team: supported via migrated `hermes-wyatt-workflow`, installed `$wyatt-product-team`, `claude-skills/agents/wyatt-product-manager.md`, `PRODUCT_TEAM_ROUTING.md`, and local `/Users/jiangyu/.hermes-wyatt` wrappers.
 - Note generation: `audio-screenshot-course-notes` is migrated and depends on local media assets, ASR tooling, image access, and Markdown asset validation.
 - Word/DOCX writing: `jiangyu-word-report-style` is migrated and preserves the style contract; render verification needs a Claude-side Word/LibreOffice/Pandoc path rather than Codex Documents runtime.
@@ -47,7 +47,7 @@ Some skills are format-compatible but still depend on local runtime tools or Cla
 - Installed into `~/.claude/skills`: **84** skill directories and **84** `SKILL.md` files.
 - Local frontmatter validator: **0** issues for both `claude-skills/skills` and `~/.claude/skills`.
 - Claude Code plugin validation: `claude-real plugins validate claude-skills` passes.
-- Claude Code route smoke test: local settings and agents point to CPA-backed Xiaomi MiMo `mimo-v2.5-pro`, but the live CPA call currently returns `auth_unavailable` for that model on the CPA server.
+- Claude Code route smoke test: default `claude` now points to `wyatt-claude-code-mimo` and `claude -p 'Reply exactly OK.'` returned `OK` through direct Xiaomi MiMo `mimo-v2.5-pro`.
 - Hermes/Wyatt workflow validation: `validate_wyatt_workflow.py` passes with `PYTHONPYCACHEPREFIX=/private/tmp/hermes_pycache`; `test_wyatt_workflow.py -v` passes 5 tests.
 - GitHub publish uses the `codex/claude-skills-migration` branch and is reconciled against `origin/main` before merge.
 - Lark and Word render flows remain dependency-gated in the current shell: `lark-cli`, `pandoc`, and `soffice/libreoffice` are not on `PATH`.

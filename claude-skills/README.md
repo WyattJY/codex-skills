@@ -23,7 +23,7 @@ Current installed parity on this Mac:
 
 Active Claude Code skills under `~/.claude/skills`: `84`.
 
-The Claude Code route and Wyatt/Hermes Claude agents are configured for CPA-backed Xiaomi MiMo with model `mimo-v2.5-pro`.
+The Claude Code route and Wyatt/Hermes Claude agents are configured for Xiaomi MiMo's official Anthropic-compatible direct endpoint with model `mimo-v2.5-pro`.
 
 ## Dependency Bootstrap
 

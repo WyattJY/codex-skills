@@ -64,8 +64,8 @@ Do not expose keys or `.env` contents. Use these routing rules only as task inte
 
 | Work type | Model |
 | --- | --- |
-| Architecture, product strategy, UI system design | `mimo-v2.5-pro` through CPA Lobewyatt |
-| Small implementation, tests, docs, ops | `mimo-v2.5-pro` through CPA Lobewyatt |
+| Architecture, product strategy, UI system design | `mimo-v2.5-pro` through official direct Xiaomi MiMo |
+| Small implementation, tests, docs, ops | `mimo-v2.5-pro` through official direct Xiaomi MiMo |
 | Codex default and Hermes default provider | local wrapper setting unless explicitly overridden |
 | UI draft image generation | `gpt-image-2` through CPA Lobewyatt |
 
@@ -107,7 +107,7 @@ python3 /Users/jiangyu/.hermes-wyatt/tests/test_wyatt_workflow.py -v
 hermes --profile default cron list --all
 ```
 
-For Claude Code subprocess calls, use `/Users/jiangyu/.hermes-wyatt/bin/wyatt-claude-code`. For Codex subprocess calls, use `/Users/jiangyu/.hermes-wyatt/bin/wyatt-codex-exec`.
+For Claude Code subprocess calls, use `/Users/jiangyu/.hermes-wyatt/bin/wyatt-claude-code-mimo`. For Codex subprocess calls, use `/Users/jiangyu/.hermes-wyatt/bin/wyatt-codex-exec`.
 
 ## Hard Rules
 

@@ -12,8 +12,8 @@ This file defines the temporary subagent roster for product work. The five long-
 
 | Work type | Provider | Model |
 | --- | --- | --- |
-| Architecture, product strategy, UI system design | Xiaomi MiMo via CPA | `mimo-v2.5-pro` |
-| Small implementation, tests, docs, ops | Xiaomi MiMo via CPA | `mimo-v2.5-pro` |
+| Architecture, product strategy, UI system design | Xiaomi MiMo official direct route | `mimo-v2.5-pro` |
+| Small implementation, tests, docs, ops | Xiaomi MiMo official direct route | `mimo-v2.5-pro` |
 | UI draft image generation | CPA Lobewyatt | `gpt-image-2` |
 
 ## Subagent Roster
@@ -46,6 +46,6 @@ This file defines the temporary subagent roster for product work. The five long-
 ## Hard Rules
 
 - Do not persist every subagent as a long-lived Hermes profile; these are task roles.
-- Claude Code agent work uses `mimo-v2.5-pro` through the CPA-backed Xiaomi MiMo route.
+- Claude Code agent work uses `mimo-v2.5-pro` through the official direct Xiaomi MiMo route.
 - UI image drafts call `gpt-image-2` through the configured image provider.
 - No agent writes secrets, Weixin tokens, `.env` contents, cookies, session files, or raw company data into memory or reports.
