@@ -1,0 +1,70 @@
+skill	status	issues	dependency_note
+audio-screenshot-course-notes	format-ready-local-dependency-documented	excluded:agents/openai.yaml	Claude Code can run this workflow when local ASR/image tools are available. Keep transcript artifacts separate from synthesized notes and validate Obsidian image links.
+bilibili-render-pdf	format-ready	excluded:agents/openai.yaml	
+brainstorming	format-ready	excluded:scripts/node_modules/.package-lock.json,scripts/node_modules/destroy/LICENSE,scripts/node_modules/destroy/index.js,scripts/node_modules/destroy/README.md,scripts/node_modules/destroy/package.json,scripts/node_modules/.bin/mime,scripts/node_modules/toidentifier/LICENSE,scripts/node_modules/toidentifier/HISTORY.md	
+browser	format-ready-runtime-review-needed	codex-runtime-references:node_repl; excluded:agents/openai.yaml	
+canva-branded-presentation	format-ready	excluded:agents/openai.yaml	
+canva-resize-for-all-social-media	format-ready	excluded:agents/openai.yaml	
+canva-translate-design	format-ready	excluded:agents/openai.yaml	
+chrome	format-ready-runtime-review-needed	codex-runtime-references:node_repl	
+chronicle	format-ready	none	
+computer-use	format-ready	none	
+dispatching-parallel-agents	format-ready	none	
+documents	format-ready-runtime-review-needed	codex-runtime-references:apply_patch,mcp__codex_apps__,Codex desktop,codex_app; excluded:agents/openai.yaml	
+executing-plans	format-ready	none	
+finishing-a-development-branch	format-ready	none	
+gh-address-comments	format-ready	excluded:agents/openai.yaml	
+gh-fix-ci	format-ready	excluded:agents/openai.yaml	
+github	format-ready	excluded:agents/openai.yaml	
+hermes-wyatt-workflow	format-ready-local-dependency-documented	none	This skill remains intentionally Wyatt-local. It depends on /Users/jiangyu/.hermes-wyatt, /Users/jiangyu/.claude/agents, Hermes memory on T7, and wrapper commands documented in the skill.
+image-tech-md-rebuilder	format-ready	excluded:agents/openai.yaml	
+jiangyu-word-report-style	format-ready-local-dependency-documented	codex-runtime-references:documents:documents; excluded:agents/openai.yaml,scripts/__pycache__/jiangyu_docx_style.cpython-312.pyc	Claude Code can use the style contract and scripts. DOCX rendering verification needs a local Word/LibreOffice/Pandoc path rather than Codex Documents runtime.
+lark-approval	format-ready	none	
+lark-attendance	format-ready	none	
+lark-base	format-ready	none	
+lark-calendar	format-ready	none	
+lark-contact	format-ready	none	
+lark-doc	format-ready	none	
+lark-drive	format-ready	none	
+lark-event	format-ready	none	
+lark-im	format-ready	none	
+lark-mail	format-ready	none	
+lark-markdown	format-ready	none	
+lark-minutes	format-ready	none	
+lark-okr	format-ready	none	
+lark-openapi-explorer	format-ready	none	
+lark-shared	format-ready	none	
+lark-sheets	format-ready	none	
+lark-skill-maker	format-ready	none	
+lark-slides	format-ready	none	
+lark-task	format-ready	none	
+lark-vc	format-ready	none	
+lark-whiteboard	format-ready	none	
+lark-wiki	format-ready	none	
+lark-workflow-meeting-summary	format-ready-local-dependency-documented	none	Requires lark-cli on PATH plus Feishu auth scopes for vc/minutes/drive/docs as needed.
+lark-workflow-standup-report	format-ready-local-dependency-documented	none	Requires lark-cli on PATH plus Feishu auth scopes for calendar/task.
+mean-reviewer	format-ready	none	
+neat-freak	format-ready	none	
+nwafu-reference-list-md-docx	format-ready	none	
+nwafu-thesis-writing	format-ready	none	
+opus4-7-thesis-technical-route-renderer	format-ready	name-normalized:opus4.7_thesis-technical-route-renderer->opus4-7-thesis-technical-route-renderer	
+pptx	format-ready	excluded:scripts/office/__pycache__/soffice.cpython-39.pyc	
+presentations	format-ready	excluded:agents/openai.yaml	
+receiving-code-review	format-ready	none	
+requesting-code-review	format-ready	none	
+research-analysis-subagent	format-ready	none	
+research-workflow	format-ready	none	
+spreadsheets	format-ready-runtime-review-needed	codex-runtime-references:mcp__codex_apps__,codex_app; excluded:agents/openai.yaml	
+subagent-driven-development	format-ready	none	
+subtitle-refine	format-ready	excluded:agents/openai.yaml	
+systematic-debugging	format-ready	none	
+test-driven-development	format-ready	none	
+thesis-technical-route-drawio	format-ready	none	
+thesis-three-line-tables	format-ready	none	
+using-git-worktrees	format-ready	none	
+using-superpowers	format-ready	none	
+verification-before-completion	format-ready	none	
+writing-plans	format-ready	none	
+writing-skills	format-ready	none	
+yeet	format-ready	excluded:agents/openai.yaml	
+youtube-render-pdf	format-ready	excluded:agents/openai.yaml	

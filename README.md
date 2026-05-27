@@ -20,10 +20,10 @@ came from.
 
 Current export summary:
 
-- `877` `SKILL.md` files
-- `512` unique skill directory names
-- `6718` tracked candidate files before Git filtering
-- about `1.2G` on the T7 Shield volume
+- `811` `SKILL.md` files in the current repository snapshot
+- `321` unique skill directory names in the current repository snapshot
+- `6697` exported files, excluding `.git/`
+- about `1.3G` on the T7 Shield volume
 
 High-signal recovered paths include:
 
@@ -73,3 +73,10 @@ directories into that machine's Codex skills root, usually:
 
 Keep this repository as the canonical backup on GitHub, and keep local runtime
 or dependency installs on the T7 Shield unless explicitly changed later.
+
+## Claude Code Migration
+
+- `claude-skills/` - Claude Code-compatible plugin-style export generated from the current local Codex skills.
+- Current migrated parity: `69` Codex source skills -> `69` Claude target skills.
+- Review evidence: `claude-skills/MIGRATION_REVIEW.md` and `claude-skills/manifests/format_review.tsv`.
+- Claude/Hermes role agents, including the product manager agent, are copied under `claude-skills/agents/`.
