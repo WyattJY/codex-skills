@@ -1,15 +1,14 @@
 ---
 name: thesis-technical-route-drawio
-description: Create and refine thesis technical route diagrams (技术路线图) in Draw.io (.drawio) with paper-style black/white visuals, dashed section frames, rectangular blocks, and orthogonal connectors. Use when asked to generate or polish a drawio technical路线图/flowchart/architecture figure (especially when mimicking a reference image) and you must ensure connectors are straight/orthogonal and never cross text.
+description: "Create and refine thesis technical route diagrams (技术路线图) in Draw.io (.drawio) with paper-style black/white visuals, dashed section frames, rectangular blocks, and orthogonal connectors. Use when asked to generate or polish a drawio technical路线图/flowchart/architecture figure (especially when mimicking a reference image) and you must ensure connectors are straight/orthogonal and never cross text."
 ---
 
 
-# Thesis Technical Route Drawio
-## Claude Code Adaptation
+## Claude Code Migration Notes
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
+# Thesis Technical Route Drawio
 
 ## Quick Start
 

@@ -1,0 +1,133 @@
+{
+  "_comment": "Example: Wyatt's master-thesis Fig. 1-1 (基于多模态数据融合的黄瓜灌水模型构建). This file is the canonical exemplar for the spec format — copy it, change titles, and tweak coordinates for new diagrams.",
+  "canvas": {
+    "width": 1300,
+    "left_margin": 30,
+    "dpi": 200,
+    "auto_height": true,
+    "bottom_padding": 20
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "y": 20,
+      "height": 580,
+      "title": "构建黄瓜全生育期视觉表型感知模型",
+      "blocks": [
+        {"id": "s1_1", "x": 80,  "y": 110, "w": 565, "h": 85,
+         "title": "温室黄瓜图像数据采集", "sub": "覆盖多生育阶段与典型遮挡场景"},
+        {"id": "s1_2", "x": 675, "y": 110, "w": 565, "h": 85,
+         "title": "关键器官实例标注", "sub": "叶片 · 花 · 果"},
+        {"id": "s1_3", "x": 230, "y": 260, "w": 840, "h": 85,
+         "title": "改进实例分割框架",
+         "sub": "结构改进 → 提升小目标与遮挡场景识别能力"},
+        {"id": "s1_4", "x": 230, "y": 385, "w": 840, "h": 70,
+         "title": "输出：器官级实例分割结果（Mask）",
+         "highlight": true},
+        {"id": "s1_5", "x": 230, "y": 495, "w": 840, "h": 75,
+         "title": "表型指标提取",
+         "sub": "叶面积 · 果实数量/大小 → 后续灌水预测的在线状态输入",
+         "highlight": true}
+      ]
+    },
+    {
+      "id": "s2",
+      "y": 635,
+      "height": 480,
+      "title": "构建多模态灌水量时序预测模型",
+      "blocks": [
+        {"id": "s2_1", "x": 80,  "y": 725,  "w": 565, "h": 75,
+         "title": "环境与灌溉时序数据"},
+        {"id": "s2_2", "x": 675, "y": 725,  "w": 565, "h": 75,
+         "title": "视觉表型指标"},
+        {"id": "s2_3", "x": 230, "y": 855,  "w": 840, "h": 70,
+         "title": "日尺度对齐与滑动窗口样本构建"},
+        {"id": "s2_4", "x": 230, "y": 955,  "w": 840, "h": 70,
+         "title": "多模态输入 · TSMixer 时序预测网络"},
+        {"id": "s2_5", "x": 430, "y": 1050, "w": 440, "h": 55,
+         "title": "输出：次日灌水量预测", "highlight": true}
+      ]
+    },
+    {
+      "id": "s3",
+      "y": 1165,
+      "height": 615,
+      "title": "构建面向生产应用的多智能体灌水决策系统",
+      "blocks": [
+        {"id": "s3_1", "x": 67.5,   "y": 1255, "w": 285, "h": 70, "title": "感知智能体"},
+        {"id": "s3_2", "x": 362.5,  "y": 1255, "w": 285, "h": 70, "title": "预测智能体"},
+        {"id": "s3_3", "x": 657.5,  "y": 1255, "w": 285, "h": 70, "title": "知识智能体"},
+        {"id": "s3_4", "x": 952.5,  "y": 1255, "w": 285, "h": 70, "title": "决策智能体"},
+        {"id": "s3_5", "x": 180,    "y": 1385, "w": 940, "h": 80,
+         "title": "ReAct 推理链路",
+         "sub": "工具接入：表型感知 · 灌水预测 · 知识检索"},
+        {"id": "s3_6", "x": 110,    "y": 1515, "w": 480, "h": 75,
+         "title": "RAG 知识增强机制"},
+        {"id": "s3_7", "x": 710,    "y": 1515, "w": 480, "h": 75,
+         "title": "分层记忆机制"},
+        {"id": "s3_8", "x": 110,    "y": 1635, "w": 480, "h": 80,
+         "title": "异常检测与人工覆盖（Override）"},
+        {"id": "s3_9", "x": 710,    "y": 1635, "w": 480, "h": 80,
+         "title": "灌溉建议输出",
+         "sub": "可解释 · 可追溯 · 可干预", "highlight": true}
+      ]
+    },
+    {
+      "id": "s4",
+      "y": 1810,
+      "height": 510,
+      "title": "开展田间试验与应用效果评价",
+      "blocks": [
+        {"id": "s4_1", "x": 90,  "y": 1900, "w": 460, "h": 85,
+         "title": "模型驱动灌溉策略", "sub": "多智能体系统输出"},
+        {"id": "s4_2", "x": 770, "y": 1900, "w": 460, "h": 85,
+         "title": "基于蒸散量（ETc）传统定量灌溉", "sub": "对照策略"},
+        {"id": "s4_3", "x": 90,  "y": 2025, "w": 460, "h": 75,
+         "title": "当前环境情景验证"},
+        {"id": "s4_4", "x": 770, "y": 2025, "w": 460, "h": 75,
+         "title": "未来环境情景验证"},
+        {"id": "s4_5", "x": 260, "y": 2145, "w": 780, "h": 80,
+         "title": "综合评价",
+         "sub": "产量 · 品质指标 · 全生育期累计灌溉量"},
+        {"id": "s4_6", "x": 260, "y": 2250, "w": 780, "h": 65,
+         "title": "节水与稳产增质效果分析 → 生产应用优化建议",
+         "highlight": true}
+      ]
+    }
+  ],
+  "arrows": [
+    {"from": "s1_1", "to": "s1_3", "type": "step", "from_anchor": 0.5, "to_anchor": 0.25, "mid_y": 227},
+    {"from": "s1_2", "to": "s1_3", "type": "step", "from_anchor": 0.5, "to_anchor": 0.75, "mid_y": 227},
+    {"from": "s1_3", "to": "s1_4", "type": "straight"},
+    {"from": "s1_4", "to": "s1_5", "type": "straight"},
+
+    {"from": "s2_1", "to": "s2_3", "type": "step", "from_anchor": 0.5, "to_anchor": 0.25, "mid_y": 827},
+    {"from": "s2_2", "to": "s2_3", "type": "step", "from_anchor": 0.5, "to_anchor": 0.75, "mid_y": 827},
+    {"from": "s2_3", "to": "s2_4", "type": "straight"},
+    {"from": "s2_4", "to": "s2_5", "type": "auto"},
+
+    {"from": "s3_1", "to": "s3_5", "type": "step", "from_anchor": 0.5, "to_anchor": 0.15, "mid_y": 1355},
+    {"from": "s3_2", "to": "s3_5", "type": "step", "from_anchor": 0.5, "to_anchor": 0.382, "mid_y": 1355},
+    {"from": "s3_3", "to": "s3_5", "type": "step", "from_anchor": 0.5, "to_anchor": 0.617, "mid_y": 1355},
+    {"from": "s3_4", "to": "s3_5", "type": "step", "from_anchor": 0.5, "to_anchor": 0.85, "mid_y": 1355},
+    {"from": "s3_5", "to": "s3_6", "type": "step", "from_anchor": 0.3,  "to_anchor": 0.5,   "mid_y": 1490},
+    {"from": "s3_5", "to": "s3_7", "type": "step", "from_anchor": 0.7,  "to_anchor": 0.5,   "mid_y": 1490},
+    {"from": "s3_6", "to": "s3_8", "type": "straight"},
+    {"from": "s3_7", "to": "s3_9", "type": "straight"},
+    {"from": "s3_8", "to": "s3_9", "type": "side", "side": "right", "dashed": true},
+
+    {"from": "s4_1", "to": "s4_3", "type": "straight"},
+    {"from": "s4_2", "to": "s4_4", "type": "straight"},
+    {"from": "s4_3", "to": "s4_5", "type": "step", "from_anchor": 0.5, "to_anchor": 0.3, "mid_y": 2122},
+    {"from": "s4_4", "to": "s4_5", "type": "step", "from_anchor": 0.5, "to_anchor": 0.7, "mid_y": 2122},
+    {"from": "s4_5", "to": "s4_6", "type": "straight"}
+  ],
+  "between_sections": [
+    {"from_section": "s1", "to_section": "s2"},
+    {"from_section": "s2", "to_section": "s3"},
+    {"from_section": "s3", "to_section": "s4"}
+  ],
+  "extras": [
+    {"type": "label", "text": "VS", "x": 660, "y": 1942, "size": 30}
+  ]
+}

@@ -1,0 +1,17 @@
+check	status	evidence
+codex_source_parity	pass	Canonical migrated local source set: 69 Codex SKILL.md files mapped in source_skills.tsv.
+hermes_source_parity	pass	14 local Hermes SKILL.md files mapped in source_skills.tsv, plus 1 Claude-native wyatt-product-team entrypoint.
+claude_package_count	pass	claude-skills/skills has 84 skill directories and 84 SKILL.md files.
+local_claude_install_count	pass	/Users/jiangyu/.claude/skills has 84 skill directories and 84 SKILL.md files.
+frontmatter_validation	pass	Custom validator checked package and local install: dirs=84, issues=0 for both.
+claude_plugin_validate	pass	/Users/jiangyu/.hermes/node/bin/claude-real plugins validate claude-skills returned "Validation passed".
+claude_model_route	configured-auth-blocked	Settings and agents point to CPA-backed Xiaomi MiMo model mimo-v2.5-pro, but claude-cpa smoke test returned CPA auth_unavailable for mimo-v2.5-pro.
+claude_agents_model	pass	12 local Wyatt Claude agents and 13 package agent/routing files use model: mimo-v2.5-pro.
+hermes_workflow_validation	pass	PYTHONPYCACHEPREFIX=/private/tmp/hermes_pycache python3 validate_wyatt_workflow.py returned ok=true.
+hermes_workflow_tests	pass	python3 test_wyatt_workflow.py -v ran 5 tests: OK.
+sidecar_scan	pass	No ._* AppleDouble, .DS_Store, or __MACOSX entries under claude-skills.
+large_file_scan	pass	No files larger than 5 MiB under claude-skills.
+strict_secret_scan	pass	Strict sk-/api-key/secret/token assignment scan returned no matches under claude-skills.
+gitleaks_path	missing	command -v gitleaks returned no path; strict local scanner was used instead.
+lark_cli_path	missing	command -v lark-cli returned no path in the current shell.
+word_renderer_path	missing	command -v pandoc and command -v soffice/libreoffice returned no usable renderer in the current shell.

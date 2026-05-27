@@ -1,15 +1,14 @@
 ---
 name: image-tech-md-rebuilder
-description: Rebuild complete technical Markdown documents from screenshot image folders. Use when the user gives an image path or folder of screenshots from a non-copyable cloud document, especially Chinese/English technical notes, interview prep, architecture docs, code snippets, tables, diagrams, or asks to "复刻/还原/提取图片里的MD/技术文档" rather than produce per-image OCR.
+description: "Rebuild complete technical Markdown documents from screenshot image folders. Use when the user gives an image path or folder of screenshots from a non-copyable cloud document, especially Chinese/English technical notes, interview prep, architecture docs, code snippets, tables, diagrams, or asks to \"复刻/还原/提取图片里的MD/技术文档\" rather than produce per-image OCR."
 ---
 
 
-# Image Tech MD Rebuilder
-## Claude Code Adaptation
+## Claude Code Migration Notes
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
+# Image Tech MD Rebuilder
 
 ## Goal
 
@@ -35,7 +34,7 @@ Convert ordered screenshots of a non-copyable technical document into one cohere
    - Prefer the bundled script:
 
 ```powershell
-uv run --with rapidocr --with onnxruntime --with pillow python ${CLAUDE_SKILL_DIR}\scripts\ocr_image_folder.py --image-dir "<IMAGE_DIR>" --out-dir "<WORK_DIR>\ocr_output"
+uv run --with rapidocr --with onnxruntime --with pillow python C:\Users\18357\.codex\skills\image-tech-md-rebuilder\scripts\ocr_image_folder.py --image-dir "<IMAGE_DIR>" --out-dir "<WORK_DIR>\ocr_output"
 ```
 
    - If `rapidocr` fails, try `rapidocr_onnxruntime`, PaddleOCR, Tesseract, or a vision model if available.

@@ -1,0 +1,85 @@
+skill	status	issues	dependency_note
+audio-screenshot-course-notes	format-ready-local-dependency-documented	excluded:agents/openai.yaml	Claude Code can run this workflow when local ASR/image tools are available. Keep transcript artifacts separate from synthesized notes and validate Obsidian image links.
+bilibili-render-pdf	format-ready	excluded:agents/openai.yaml	none
+brainstorming	format-ready	excluded:scripts/node_modules/.package-lock.json,scripts/node_modules/destroy/LICENSE,scripts/node_modules/destroy/index.js,scripts/node_modules/destroy/README.md,scripts/node_modules/destroy/package.json,scripts/node_modules/.bin/mime,scripts/node_modules/toidentifier/LICENSE,scripts/node_modules/toidentifier/HISTORY.md	none
+browser	format-ready-runtime-review-needed	codex-runtime-references:node_repl; excluded:agents/openai.yaml	none
+canva-branded-presentation	format-ready	excluded:agents/openai.yaml	none
+canva-resize-for-all-social-media	format-ready	excluded:agents/openai.yaml	none
+canva-translate-design	format-ready	excluded:agents/openai.yaml	none
+chrome	format-ready-runtime-review-needed	codex-runtime-references:node_repl	none
+chronicle	format-ready	none	none
+computer-use	format-ready	none	none
+dispatching-parallel-agents	format-ready	none	none
+documents	format-ready-runtime-review-needed	codex-runtime-references:apply_patch,mcp__codex_apps__,Codex desktop,codex_app; excluded:agents/openai.yaml	none
+executing-plans	format-ready	none	none
+finishing-a-development-branch	format-ready	none	none
+gh-address-comments	format-ready	excluded:agents/openai.yaml	none
+gh-fix-ci	format-ready	excluded:agents/openai.yaml	none
+github	format-ready	excluded:agents/openai.yaml	none
+hermes-wyatt-workflow	format-ready-local-dependency-documented	none	This skill remains intentionally Wyatt-local. It depends on /Users/jiangyu/.hermes-wyatt, /Users/jiangyu/.claude/agents, Hermes memory on T7, and wrapper commands documented in the skill.
+image-tech-md-rebuilder	format-ready	excluded:agents/openai.yaml	none
+jiangyu-word-report-style	format-ready-local-dependency-documented	codex-runtime-references:documents:documents; excluded:agents/openai.yaml,scripts/__pycache__/jiangyu_docx_style.cpython-312.pyc	Claude Code can use the style contract and scripts. DOCX rendering verification needs a local Word/LibreOffice/Pandoc path rather than Codex Documents runtime.
+lark-approval	format-ready	none	none
+lark-attendance	format-ready	none	none
+lark-base	format-ready	none	none
+lark-calendar	format-ready	none	none
+lark-contact	format-ready	none	none
+lark-doc	format-ready	none	none
+lark-drive	format-ready	none	none
+lark-event	format-ready	none	none
+lark-im	format-ready	none	none
+lark-mail	format-ready	none	none
+lark-markdown	format-ready	none	none
+lark-minutes	format-ready	none	none
+lark-okr	format-ready	none	none
+lark-openapi-explorer	format-ready	none	none
+lark-shared	format-ready	none	none
+lark-sheets	format-ready	none	none
+lark-skill-maker	format-ready	none	none
+lark-slides	format-ready	none	none
+lark-task	format-ready	none	none
+lark-vc	format-ready	none	none
+lark-whiteboard	format-ready	none	none
+lark-wiki	format-ready	none	none
+lark-workflow-meeting-summary	format-ready-local-dependency-documented	none	Requires lark-cli on PATH plus Feishu auth scopes for vc/minutes/drive/docs as needed.
+lark-workflow-standup-report	format-ready-local-dependency-documented	none	Requires lark-cli on PATH plus Feishu auth scopes for calendar/task.
+mean-reviewer	format-ready	none	none
+neat-freak	format-ready	none	none
+nwafu-reference-list-md-docx	format-ready	none	none
+nwafu-thesis-writing	format-ready	none	none
+opus4-7-thesis-technical-route-renderer	format-ready	name-normalized:opus4.7_thesis-technical-route-renderer->opus4-7-thesis-technical-route-renderer	none
+pptx	format-ready	excluded:scripts/office/__pycache__/soffice.cpython-39.pyc	none
+presentations	format-ready	excluded:agents/openai.yaml	none
+receiving-code-review	format-ready	none	none
+requesting-code-review	format-ready	none	none
+research-analysis-subagent	format-ready	none	none
+research-workflow	format-ready	none	none
+spreadsheets	format-ready-runtime-review-needed	codex-runtime-references:mcp__codex_apps__,codex_app; excluded:agents/openai.yaml	none
+subagent-driven-development	format-ready	none	none
+subtitle-refine	format-ready	excluded:agents/openai.yaml	none
+systematic-debugging	format-ready	none	none
+test-driven-development	format-ready	none	none
+thesis-technical-route-drawio	format-ready	none	none
+thesis-three-line-tables	format-ready	none	none
+using-git-worktrees	format-ready	none	none
+using-superpowers	format-ready	none	none
+verification-before-completion	format-ready	none	none
+writing-plans	format-ready	none	none
+writing-skills	format-ready	none	none
+yeet	format-ready	excluded:agents/openai.yaml	none
+youtube-render-pdf	format-ready	excluded:agents/openai.yaml	none
+aihubmix-image-gen	format-ready-local-dependency-documented	none	Needs CPA/OpenAI-compatible image environment variables; secrets stay in env or Keychain.
+backend-blueprint	format-ready	none	none
+case-archiver	format-ready	none	none
+case-router	format-ready	none	none
+dataset-profiler	format-ready	none	none
+dual-review	format-ready	none	none
+hikvision-codec-stage1	format-ready	none	none
+hk-intership	format-ready	none	none
+paper-digest	format-ready	none	none
+prompt-rewriter	format-ready	none	none
+server-observation-loop	format-ready	none	none
+ship-package	format-ready	none	none
+ui-trends-watcher	format-ready	none	none
+weixin-daily-push	format-ready-local-dependency-documented	none	Depends on local Hermes/Weixin delivery configuration; no credentials are copied.
+wyatt-product-team	format-ready-runtime-review-needed	none	Claude-native Hermes product-team entrypoint; references installed Hermes skills and Wyatt role agents.

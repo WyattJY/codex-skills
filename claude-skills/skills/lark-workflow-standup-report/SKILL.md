@@ -1,18 +1,16 @@
 ---
 name: lark-workflow-standup-report
 description: "日程待办摘要：编排 calendar +agenda 和 task +get-my-tasks，生成指定日期的日程与未完成任务摘要。适用于了解今天/明天/本周的安排。"
-metadata:
-  requires:
-    bins: ["lark-cli"]
 ---
 
 
-# 日程待办摘要工作流
-## Claude Code Adaptation
+## Claude Code Migration Notes
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
+Compatibility note: Requires lark-cli on PATH plus Feishu auth scopes for calendar/task.
+
+# 日程待办摘要工作流
 
 **CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](../lark-shared/SKILL.md)，其中包含认证、权限处理**
 

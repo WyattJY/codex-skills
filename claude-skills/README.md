@@ -1,111 +1,42 @@
-# WyattJY Claude Skills
+# Claude Skills
 
-Claude Code-ready mirror of Wyatt's user-managed Codex skills.
+Claude Code-compatible migration of Jiangyu's local Codex skill set.
 
-## Scope
+## Layout
 
-This repository is a runtime set for Claude Code. It mirrors the user-managed
-Codex skill roots on this machine, not Codex/Claude built-in or plugin-owned
-skills:
+- `skills/` - migrated Claude Code skills. Copy or symlink these directories to `~/.claude/skills`, or use this folder as a Claude Code plugin root.
+- `agents/` - Claude-native Wyatt/Hermes role agents that complement the skills, including product-manager routing.
+- `.claude-plugin/plugin.json` - minimal plugin metadata for Claude Code plugin-style installation.
+- `manifests/` - source mapping, review status, and count parity evidence.
+- `MIGRATION_REVIEW.md` - human review of format conversion and runtime dependencies.
+- `windows-mirror-reference/` - reference-only preservation of the older Windows mirror scripts and manifests; it is not part of the active Claude Code skill count.
 
-- `skills/` contains installable Claude Code skills.
-- `scripts/build-claude-skills.ps1` regenerates `skills/` from the source roots.
-- `scripts/install-windows.ps1` installs these skills into `~/.claude/skills`.
-- `scripts/review-claude-skills.ps1` checks the Codex-to-Claude conversion.
-- `scripts/test-with-claude.ps1` invokes Claude Code against each generated skill.
-- `manifests/` records source paths, generated files, and validation results.
+## Current Count
 
-## Source Roots
+See `manifests/summary.json`. The migration is generated from the current local Codex skill roots and keeps the Codex source count equal to its Claude target count.
 
-The generated skills come from:
+Current installed parity on this Mac:
 
-- `H:\T7\codex_skills\skills` for active Wyatt skills.
-- `C:\Users\18357\.codex\skills` for local Codex personal skills that have a
-  `SKILL.md`.
-- `C:\Users\18357\.agents\skills` for local shared agent skills, including Lark.
+- `69/69` migrated Codex skills are present in this package and installed under `~/.claude/skills`.
+- `14/14` Hermes local skills are also installed for Claude Code.
+- `1` Claude-native `wyatt-product-team` entrypoint is installed for Hermes product-manager and product-team routing.
 
-Source priority is in that order. Duplicate skill names keep the first source
-and are recorded in `manifests/skipped_sources.tsv`.
+Active Claude Code skills under `~/.claude/skills`: `84`.
 
-The expected invariant is:
+The Claude Code route and Wyatt/Hermes Claude agents are configured for CPA-backed Xiaomi MiMo with model `mimo-v2.5-pro`.
 
-```text
-unique user-managed Codex skills == generated Claude skills == installed Claude skills
-```
+## Dependency Bootstrap
 
-## Windows Install
+The skill format is Claude Code-ready, but several workflows need local tools before they can run end to end:
 
-From this repository:
+- Lark daily and meeting workflows: install `lark-cli`, then authenticate calendar/task and vc/drive/docs scopes with `lark-cli auth login`.
+- Word/DOCX render verification: install `pandoc` plus LibreOffice or another `soffice` provider on `PATH`; the style script itself uses `python-docx`.
+- Audio and screenshot course notes: keep the ASR environment on T7, for example `/Volumes/T7 Shield/codex_cache/course_note_asr/.venv`, and install the ASR/image packages required by that skill.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-windows.ps1
-```
+## Hermes Product Team
 
-The installer creates directory junctions from:
-
-```text
-C:\Users\18357\.claude\skills\<skill-name>
-```
-
-to:
-
-```text
-H:\T7\codex_downloads\repos\WyattJY-claude-skills\skills\<skill-name>
-```
-
-Existing same-name skills are backed up before replacement. To make the Claude
-personal skill directory exactly match this repository, pass `-PruneUnmanaged`:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-windows.ps1 -PruneUnmanaged
-```
-
-## Storage Model
-
-The H drive is the source of truth. By default, real skill contents stay under:
-
-```text
-H:\T7\codex_downloads\repos\WyattJY-claude-skills\skills
-```
-
-Claude Code still discovers personal skills through:
-
-```text
-C:\Users\18357\.claude\skills
-```
-
-The installer therefore places junctions there. Those entries are pointers, not
-real copies of the skill contents.
-
-To audit that installed generated skills still point back to H:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\audit-storage.ps1
-```
-
-## Regenerate
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\build-claude-skills.ps1
-powershell -ExecutionPolicy Bypass -File .\scripts\validate-claude-skills.ps1
-powershell -ExecutionPolicy Bypass -File .\scripts\review-claude-skills.ps1
-```
-
-## Claude CLI Test
-
-Install first, then run:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\test-with-claude.ps1
-```
-
-The test asks Claude Code to load each skill via `/skill-name` and produce a
-single-line acknowledgement. Skills with explicit license gates, such as
-`mean-reviewer`, are treated as loaded but requiring manual acceptance. Results
-are written under `test-results/`.
+Claude Code can use the Hermes product-manager workflow through `$wyatt-product-team`, backed by `claude-skills/agents/wyatt-product-manager.md`, `PRODUCT_TEAM_ROUTING.md`, and the local `/Users/jiangyu/.hermes-wyatt` wrappers.
 
 ## Safety
 
-Do not commit API keys, cookies, session files, account settings, `.env` files,
-or credential-bearing outputs. The build script excludes common generated and
-credential-like files, but source review is still required before publishing.
+Do not commit API keys, `.env`, `settings.json*`, cookies, session files, or local auth material. Secrets belong in Keychain, environment variables, or authenticated CLIs.

@@ -1,7 +1,7 @@
 ---
 name: wyatt-hikvision-codec-stage1
 description: Use for Wyatt's Hikvision stage-one onboarding, C-language video encode/decode tasks, codec debugging, latency response, performance profiling, and safe work reporting.
-model: claude-opus-4-7-think
+model: mimo-v2.5-pro
 ---
 
 # Wyatt Hikvision Codec Stage 1 Agent

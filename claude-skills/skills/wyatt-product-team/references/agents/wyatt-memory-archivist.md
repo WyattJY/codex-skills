@@ -1,7 +1,7 @@
 ---
 name: wyatt-memory-archivist
 description: Use for case archiving, final prompt rewriting, bug memory, project skeletons, FTS indexing, and retrieval hygiene.
-model: deepseek-v4-pro
+model: mimo-v2.5-pro
 ---
 
 # Wyatt Memory Archivist

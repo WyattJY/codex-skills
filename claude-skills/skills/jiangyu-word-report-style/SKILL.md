@@ -1,17 +1,18 @@
 ---
 name: jiangyu-word-report-style
-description: Generate or edit Word/DOCX reports in Jiangyu's internship handover report format. Use whenever this user asks for a Word document, Word report, docx deliverable, technical report, implementation plan, interview QA report, handover document, or asks to follow the 019dd837-de97-7cf2-8114-baf80bad0e1f handover Word style, including Chinese reports that need the same fonts, spacing, cover, tables, and verification workflow.
+description: "Generate or edit Word/DOCX reports in Jiangyu's internship handover report format. Use whenever this user asks for a Word document, Word report, docx deliverable, technical report, implementation plan, interview QA report, handover document, or asks to follow the 019dd837-de97-7cf2-8114-baf80bad0e1f handover Word style, including Chinese reports that need the same fonts, spacing, cover, tables, and verification workflow."
 ---
 
 
+## Claude Code Migration Notes
+
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
+Compatibility note: Claude Code can use the style contract and scripts. DOCX rendering verification needs a local Word/LibreOffice/Pandoc path rather than Codex Documents runtime.
+
 # Jiangyu Word Report Style
-## Claude Code Adaptation
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
-
-Use this skill as the style layer for the user's Word deliverables. Pair it with the `Claude Code document/DOCX tooling or a locally installed documents skill` skill whenever possible for DOCX rendering and visual QA.
+Use this skill as the style layer for the user's Word deliverables. Pair it with the `documents:documents` skill whenever possible for DOCX rendering and visual QA.
 
 ## Workflow
 

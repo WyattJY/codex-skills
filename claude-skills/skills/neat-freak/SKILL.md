@@ -1,34 +1,23 @@
 ---
 name: neat-freak
-description: >
-  End-of-session knowledge cleanup with OCD-level rigor — reconciles project docs
-  (CLAUDE.md, README.md, docs/) and agent memory against the code so nothing rots.
-  会话结束后对项目文档和记忆进行洁癖级审查与同步。MUST trigger when the user says:
-  "sync up", "tidy up docs", "update memory", "clean up docs", "/sync", "/neat", "同步一下",
-  "整理文档", "整理一下", "更新记忆", "梳理一下", "收尾", "这个阶段做完了",
-  "新人能直接上手", or any phrase suggesting a dev milestone where knowledge needs
-  reconciliation. Also trigger when the user reports stale docs, conflicting memories,
-  or wants a clean handoff to teammates or other agents. Bare "整理" / "tidy" with
-  prior dev context counts — do not under-trigger. Cross-platform: works on Claude Code,
-  OpenAI Claude Code, OpenCode, and OpenClaw.
+description: "End-of-session knowledge cleanup with OCD-level rigor — reconciles project docs (CLAUDE.md, README.md, docs/) and agent memory against the code so nothing rots. 会话结束后对项目文档和记忆进行洁癖级审查与同步。MUST trigger when the user says: sync up\", \"tidy up docs\", \"update memory\", \"clean up docs\", \"/sync\", \"/neat\", \"同步一下\", 整理文档\", \"整理一下\", \"更新记忆\", \"梳理一下\", \"收尾\", \"这个阶段做完了\", 新人能直接上手\", or any phrase suggesting a dev milestone where knowledge needs reconciliation. Also trigger when the user reports stale docs, conflicting memories, or wants a clean handoff to teammates or other agents. Bare \"整理\" / \"tidy\" with prior dev context counts — do not under-trigger. Cross-platform: works on Claude Code, OpenAI Codex, OpenCode, and OpenClaw."
 ---
 
 
+## Claude Code Migration Notes
+
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
 # 洁癖 — Knowledge Base Neat-Freak
-## Claude Code Adaptation
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
-
-> **Cross-platform Agent Skill** — Claude Code · OpenAI Claude Code · OpenCode · OpenClaw 通用。
+> **Cross-platform Agent Skill** — Claude Code · OpenAI Codex · OpenCode · OpenClaw 通用。
 > 跨平台 SKILL.md，遵循开放 Agent Skill 规范。
 
 你是一个**知识库编辑**，不是记录员。记录员只会往后追加，编辑会审查全局、合并重复、修正过期、删除废弃。你的工作是让整个项目的知识体系始终保持**干净、准确、对新人友好**的状态——像有洁癖一样。
 
 ## 为什么这件事重要
 
-在 AI 协作开发中，代码可以随时重写，但**文档和记忆是跨会话、跨 Agent 的唯一桥梁**。如果记忆里有过期信息，下一个 Agent（无论它是 Claude、Claude Code 还是别的）会基于错误前提做决策。如果 docs/ 混乱或缺失，接手者（尤其是下游项目的同事）会浪费大量时间搞清楚这套系统怎么用。
+在 AI 协作开发中，代码可以随时重写，但**文档和记忆是跨会话、跨 Agent 的唯一桥梁**。如果记忆里有过期信息，下一个 Agent（无论它是 Claude、Codex 还是别的）会基于错误前提做决策。如果 docs/ 混乱或缺失，接手者（尤其是下游项目的同事）会浪费大量时间搞清楚这套系统怎么用。
 
 这个 Skill 的价值就在于：**让知识体系的每一层都跟得上代码的变化。**
 
@@ -44,7 +33,7 @@ description: >
 
 这三层**受众不同，职责不重叠**。CLAUDE.md 里写"新增了 device flow 五个路由" ≠ docs/integration-guide.md 里"下游怎么接这套 flow" —— 前者是提醒自己，后者是教别人。**两份都要写。**
 
-> **Agent 记忆系统的具体位置因平台而异**（Claude Code 在 `~/.claude/projects/<...>/memory/`，Claude Code 用 `AGENTS.md`，OpenCode 用 `.opencode/`，OpenClaw 用 `~/.openclaw/`）。完整路径速查见 [references/agent-paths.md](references/agent-paths.md)。如果当前 agent 没有独立的记忆系统，直接跳过这一层，把功夫全花在 docs 和项目根 markdown 上。
+> **Agent 记忆系统的具体位置因平台而异**（Claude Code 在 `~/.claude/projects/<...>/memory/`，Codex 用 `AGENTS.md`，OpenCode 用 `.opencode/`，OpenClaw 用 `~/.openclaw/`）。完整路径速查见 [references/agent-paths.md](references/agent-paths.md)。如果当前 agent 没有独立的记忆系统，直接跳过这一层，把功夫全花在 docs 和项目根 markdown 上。
 
 ## 执行流程
 
@@ -54,7 +43,7 @@ description: >
 
 1. 列出 agent 的记忆文件（如有）：
    - Claude Code：`ls ~/.claude/projects/<...>/memory/` 并读 `MEMORY.md` 及所有被引用的 `.md`
-   - Claude Code / OpenCode / 其他：找该 agent 的等价位置（见 references/agent-paths.md）
+   - Codex / OpenCode / 其他：找该 agent 的等价位置（见 references/agent-paths.md）
 2. 对本次对话涉及的**每一个项目**：
    - `ls <project-root>/` → 确认根目录结构
    - `ls <project-root>/docs/ 2>/dev/null` → **枚举所有 docs**（缺失也要确认）
@@ -163,4 +152,4 @@ API 速查表、环境变量表、术语表是高频查询的结构化信息，*
 ## 参考资料
 
 - **[references/sync-matrix.md](references/sync-matrix.md)** — 完整的"变更类型 → 要改哪些文件"映射表
-- **[references/agent-paths.md](references/agent-paths.md)** — Claude Code / Claude Code / OpenCode 各自的记忆与配置路径速查
+- **[references/agent-paths.md](references/agent-paths.md)** — Claude Code / Codex / OpenCode 各自的记忆与配置路径速查

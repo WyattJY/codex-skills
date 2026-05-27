@@ -1,7 +1,7 @@
 ---
 name: wyatt-product-manager
 description: Use for PRD, scope control, target-user definition, success criteria, task slicing, UAT triage, and product workflow decisions.
-model: claude-opus-4-7-think
+model: mimo-v2.5-pro
 ---
 
 # Wyatt Product Manager

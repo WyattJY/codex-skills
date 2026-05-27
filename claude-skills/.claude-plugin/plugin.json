@@ -1,0 +1,8 @@
+{
+  "name": "claude-skills",
+  "version": "1.0.0",
+  "author": {
+    "name": "WyattJY"
+  },
+  "description": "Claude Code-compatible migration of local Codex, plugin, Hermes/Wyatt workflow skills from Jiangyu Mac."
+}

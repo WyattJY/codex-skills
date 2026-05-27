@@ -1,19 +1,14 @@
 ---
 name: lark-event
-description: "Lark/Feishu real-time event listening / subscribing / consuming: stream events as NDJSON via `lark-cli event consume <EventKey>` (covers IM message receive, reactions, chat member changes, etc.). Use for Lark bots, real-time message processing, long-running subscribers, streaming webhook/push handlers. Supports `--max-events` / `--timeout` bounded runs and a stderr ready-marker contract — designed for AI agents running as subprocesses."
-metadata:
-  requires:
-    bins: ["lark-cli"]
-  cliHelp: "lark-cli event --help"
+description: "Lark/Feishu real-time event listening / subscribing / consuming: stream events as NDJSON via `lark-cli event consume (EventKey)` (covers IM message receive, reactions, chat member changes, etc.). Use for Lark bots, real-time message processing, long-running subscribers, streaming webhook/push handlers. Supports `--max-events` / `--timeout` bounded runs and a stderr ready-marker contract — designed for AI agents running as subprocesses."
 ---
 
 
-# Lark Events
-## Claude Code Adaptation
+## Claude Code Migration Notes
 
-- This copy is prepared for Claude Code personal or project skills.
-- Resolve bundled files relative to ${CLAUDE_SKILL_DIR} when Claude Code exposes it; otherwise use the local skill directory.
-- Map old agent/tool wording to the closest Claude Code capability by intent.
+This skill was migrated from the local Codex skill registry for Claude Code. Use it as a Claude Code `SKILL.md` skill. Some source text may name Codex-only tools or channels; in Claude Code, use the closest available Claude Code tool, shell command, MCP/plugin integration, or local helper script. Keep secrets in Keychain, environment variables, or authenticated CLIs only.
+
+# Lark Events
 
 > **Prerequisite:** Read [`../lark-shared/SKILL.md`](../lark-shared/SKILL.md) first for authentication, `--as user/bot` switching, `Permission denied` handling, and safety rules.
 
