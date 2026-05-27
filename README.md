@@ -17,12 +17,13 @@ came from.
 - `skills/wyatt-claude/` - from `/Volumes/T7 Shield/Wyatt/.claude/skills`
 - `skills/codex-downloads/` - from `/Volumes/T7 Shield/codex_downloads/skills`
 - `skills/t7-shield-full/` - path-preserving export of the T7 scan recorded in `manifests/t7_candidate_skill_files_outside_export.txt`
+- `claude-skills/` - Claude Code-ready mirror generated from the current Windows user-managed Codex skill roots
 
 Current export summary:
 
-- `877` `SKILL.md` files
-- `512` unique skill directory names
-- `6718` tracked candidate files before Git filtering
+- `927` `SKILL.md` files
+- `526` unique skill directory names
+- `7229` tracked candidate files before Git filtering
 - about `1.2G` on the T7 Shield volume
 
 High-signal recovered paths include:

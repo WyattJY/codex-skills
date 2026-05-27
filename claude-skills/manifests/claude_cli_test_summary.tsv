@@ -1,0 +1,51 @@
+skill	status	ok	exit_code	elapsed_ms	output
+aihubmix-image-gen	pass	True	0	4759	SKILL_TEST_LOADED: aihubmix-image-gen - Generates UI mockup images from specs
+backend-blueprint	pass	True	0	4849	SKILL_TEST_LOADED: backend-blueprint - API contract and DB schema design workflow
+case-archiver	pass	True	0	5864	SKILL_TEST_LOADED: case-archiver - Archives case work to durable memory
+case-router	pass	True	0	6692	SKILL_TEST_LOADED: case-router - routes queries to relevant past cases
+dataset-profiler	pass	True	0	5776	SKILL_TEST_LOADED: dataset-profiler - Profiles datasets with aggregate statistics safely
+dual-review	pass	True	0	8628	SKILL_TEST_LOADED: dual-review - Independent code review with severity merging
+hikvision-codec-stage1	pass	True	0	6218	SKILL_TEST_LOADED: hikvision-codec-stage1 - Hikvision video codec task routing
+hk-intership	pass	True	0	4172	SKILL_TEST_LOADED: hk-intership - HK internship literature review router
+image-tech-md-rebuilder	pass	True	0	4386	SKILL_TEST_LOADED: image-tech-md-rebuilder - Rebuilds screenshot docs into clean Markdown
+jiangyu-word-report-style	pass	True	0	4578	SKILL_TEST_LOADED: jiangyu-word-report-style - Chinese formal DOCX report styling
+lark-approval	pass	True	0	6077	SKILL_TEST_LOADED: lark-approval - Manage Lark approval workflows and tasks
+lark-attendance	pass	True	0	5422	SKILL_TEST_LOADED: lark-attendance - Lark attendance record query skill
+lark-base	pass	True	0	9703	SKILL_TEST_LOADED: lark-base - Lark Base multi-dimensional table management
+lark-calendar	pass	True	0	4935	SKILL_TEST_LOADED: lark-calendar - Create and manage calendar events
+lark-contact	pass	True	0	8273	SKILL_TEST_LOADED: lark-contact - Lark employee contact lookup and search
+lark-doc	pass	True	0	5408	SKILL_TEST_LOADED: lark-doc - Create, fetch, and update Lark documents
+lark-drive	pass	True	0	7302	SKILL_TEST_LOADED: lark-drive - Lark Drive file and comment management
+lark-event	pass	True	0	9222	SKILL_TEST_LOADED: lark-event - Consume Lark events via CLI commands
+lark-im	pass	True	0	7389	SKILL_TEST_LOADED: lark-im - Lark/Feishu instant messaging integration
+lark-mail	pass	True	0	7721	SKILL_TEST_LOADED: lark-mail - Send and manage Lark emails via CLI
+lark-markdown	pass	True	0	4289	SKILL_TEST_LOADED: lark-markdown - Create, fetch, and overwrite Markdown files in Feishu Drive.
+lark-minutes	loaded_response	True	0	7749	Let me read the shared skill file as required by the skill instructions.<tool_call> <function=read> <parameter=file_path
+lark-okr	pass	True	0	4637	SKILL_TEST_LOADED: lark-okr - Manage OKR objectives and key results
+lark-openapi-explorer	pass	True	0	4611	SKILL_TEST_LOADED: lark-openapi-explorer - Discover undocumented Lark OpenAPI endpoints from docs
+lark-shared	pass	True	0	10115	SKILL_TEST_LOADED: lark-shared - Lark-cli operations and safety guidelines
+lark-sheets	pass	True	0	7144	SKILL_TEST_LOADED: lark-sheets - Lark/Feishu spreadsheet operations via CLI
+lark-skill-maker	pass	True	0	4426	SKILL_TEST_LOADED: lark-skill-maker - Create new skills from lark-cli
+lark-slides	pass	True	0	4770	SKILL_TEST_LOADED: lark-slides - Create and edit Lark presentation slides
+lark-task	pass	True	0	6100	SKILL_TEST_LOADED: lark-task - Create, manage, and query Lark tasks
+lark-vc	pass	True	0	5514	SKILL_TEST_LOADED: lark-vc - Feishu video meeting notes and recordings
+lark-whiteboard	pass	True	0	5668	SKILL_TEST_LOADED: lark-whiteboard - Create, query, and update Lark whiteboard diagrams
+lark-wiki	pass	True	0	4941	SKILL_TEST_LOADED: lark-wiki - Manage Lark wiki spaces, nodes, and members
+lark-workflow-meeting-summary	pass	True	0	5365	SKILL_TEST_LOADED: lark-workflow-meeting-summary - Summarize Lark meeting notes into reports
+lark-workflow-standup-report	pass	True	0	5594	SKILL_TEST_LOADED: lark-workflow-standup-report - Daily calendar and task standup summary
+mean-reviewer	license_gate	True	0	18680	> **TERMS OF USE — mean-reviewer-skills (LICENSE)** > > This skill is governed by the repository LICENSE ("All Rights Re
+neat-freak	pass	True	0	5900	SKILL_TEST_LOADED: neat-freak - Knowledge base cleanup and sync editor
+nwafu-reference-list-md-docx	pass	True	0	5135	SKILL_TEST_LOADED: nwafu-reference-list-md-docx - Format references and export to docx
+nwafu-thesis-writing	pass	True	0	5473	SKILL_TEST_LOADED: nwafu-thesis-writing - NWAFU thesis writing and citation guidance
+paper-digest	pass	True	0	9236	SKILL_TEST_LOADED: paper-digest - Research paper analysis and actionable idea generation
+pptx	pass	True	0	5495	SKILL_TEST_LOADED: pptx - Create and edit PowerPoint presentations
+prompt-rewriter	pass	True	0	5507	SKILL_TEST_LOADED: prompt-rewriter - Rewrites prompts for clarity and completeness
+research-analysis-subagent	pass	True	0	9032	SKILL_TEST_LOADED: research-analysis-subagent - Analyzes academic papers into structured analysis
+research-workflow	pass	True	0	6797	SKILL_TEST_LOADED: research-workflow - Paper-to-report research pipeline workflow
+server-observation-loop	pass	True	0	5284	SKILL_TEST_LOADED: server-observation-loop - iterative server debugging with evidence collection
+ship-package	pass	True	0	5127	SKILL_TEST_LOADED: ship-package - Packages and validates releases safely
+thesis-technical-route-drawio	pass	True	0	4768	SKILL_TEST_LOADED: thesis-technical-route-drawio - Draw thesis technical route diagrams
+thesis-three-line-tables	pass	True	0	5849	SKILL_TEST_LOADED: thesis-three-line-tables - Generate thesis three-line table documents
+ui-trends-watcher	pass	True	0	5869	SKILL_TEST_LOADED: ui-trends-watcher - UI design trend analysis and specs
+weixin-daily-push	pass	True	0	6984	SKILL_TEST_LOADED: weixin-daily-push - Prepares WeChat message outbox files
+wyatt-product-team	pass	True	0	5101	SKILL_TEST_LOADED: wyatt-product-team - Multi-role product team workflow routing

@@ -510,3 +510,17 @@ youtube-content
 youtube-render-pdf
 yuanbao
 audio-screenshot-course-notes
+aihubmix-image-gen
+backend-blueprint
+case-archiver
+case-router
+dataset-profiler
+dual-review
+hikvision-codec-stage1
+paper-digest
+prompt-rewriter
+server-observation-loop
+ship-package
+ui-trends-watcher
+weixin-daily-push
+wyatt-product-team
