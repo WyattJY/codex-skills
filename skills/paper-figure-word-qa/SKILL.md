@@ -1,261 +1,217 @@
 ---
 name: paper-figure-word-qa
-description: Use when Wyatt asks to QA or fix paper figures/tables in Word/DOCX/PDF reports, including Chinese complaints like 图里夹正文, 表格没有展示完全, PDF整个截图, 截图偷懒, body/caption text in screenshots, whole-page PDF screenshots, or incomplete tables.
+description: >-
+  Use when Wyatt asks to QA or fix paper figures, tables, formulas, charts, or screenshots in Word/DOCX/PDF research reports, especially complaints like 图里夹正文, 图中夹正文, 图表中夹杂正文, caption混进图片, PDF整个截图, 整页PDF截图, 截图偷懒, 表格没有展示完全, 表格下面结果没有展示完全, 表格底部结果没截到, 最后一行没截到, 最后一列没截到, 图表不干净, whole-page PDF screenshots, incomplete tables, or body/caption text inside report images.
 ---
 
 # Paper Figure Word QA
 
 ## Core Purpose
 
-Use this skill as the strict visual QA gate for technical Word/DOCX/PDF reports that include paper figures, paper tables, formulas, screenshots, or benchmark result visuals. It is meant to prevent the exact failure mode where a report looks polished globally but individual paper figures are lazy page screenshots, include original paper body text, or miss critical rows/columns.
+Use this skill as the strict visual, content, and render QA gate for Chinese technical Word/DOCX/PDF reports that use paper-derived figures, tables, equations, algorithms, screenshots, generated plots, or benchmark visuals. The goal is to prevent polished reports with lazy page screenshots, original paper body text inside images, clipped tables, unreadable final-scale labels, shallow paper summaries, or unsupported trend claims.
 
-Pair it with:
+A clean crop alone is not sufficient. Every accepted visual must have source lineage, final rendered-page evidence, and nearby Chinese explanation that states what claim the visual supports, what the reader should notice, and what the visual does not prove.
 
-- `jiangyu-word-report-style` when the deliverable is Wyatt's Chinese Word report style.
-- `documents:documents` when DOCX rendering or page PNG verification is needed.
-- The relevant research/corpus skill, such as `hk-intership` or `research-workflow`, when papers and extracted artifacts must be located first.
+## Pairing
 
-## Trigger Phrases
+- Use `jiangyu-word-report-style` as the style layer for Wyatt's Chinese Word reports. Do not change cover, margins, heading fonts, body fonts, caption style, or three-line table styling unless the user explicitly asks.
+- Use `documents:documents` for DOCX/PDF rendering, page PNG inspection, and final artifact verification.
+- Use `hk-intership` first when the task is an HK/intership literature workflow or the corpus lives under `H:\T7\Wyatt\HK_intership`.
+- Use `research-workflow` when papers must be downloaded, PDFs converted, paper artifacts extracted, or non-HK report exports are needed.
+- For broad survey prompts such as `2026年的多模态、llm、检索技术发展情况`, use the research/corpus workflow before this skill. This skill then audits the evidence, visuals, formulas, tables, citations, and final render quality.
 
-Use this skill when the user says or implies any of these:
-
-- `Word报告`, `图文报告`, `论文精读`, `调研报告`, `literature report`, `paper survey` when the request involves paper figures/tables, formulas, screenshots, or visual QA.
-- `paper figures`, `paper tables`, `figure extraction`, `table crop`, `result table`, `benchmark table`.
-- `图里夹正文`, `图中夹正文`, `图表中夹杂正文`, `caption混进图片`, `表格没有展示完全`, `截图偷懒`, `PDF整个截图`, `图糊弄一下`, `图表不干净`.
-- Need to keep the approved report format while only fixing figures, tables, captions, references, or visual QA.
-
-Do not use this skill for ordinary app screenshots, UI mockups, or charts that are generated directly for the current project and are not part of a report-quality paper visual workflow.
+Do not use this skill for ordinary UI screenshots, product mockups, or charts that are not part of a report-quality paper evidence workflow.
 
 ## Non-Negotiable Rules
 
 - Write report notes in Chinese unless Wyatt explicitly requests another language.
-- Do not modify `jiangyu-word-report-style` when the problem is only figure/table selection, cropping, captions, or render QA.
-- Do not insert or keep any paper figure/table unless the exact source crop has been visually inspected with `view_image`.
-- Do not infer visual meaning from nearby prose, filenames, OCR text, subtitles, page numbers, or paper captions without checking the image itself.
-- Do not use OCR as a substitute for visual understanding.
-- Do not call a report "fixed" until the final DOCX has been rebuilt and the final PDF or rendered page PNGs have been inspected on the affected pages.
-- Do not preserve a dirty screenshot because it is "good enough" if a cleaner crop can be made from the original paper page.
-- Every final paper visual must have source lineage: source paper/key, original PDF path, source page number, Figure/Table/Equation/Algorithm identifier when available, final asset path, final rendered report page, visual type, expected logical object count, and source/render `view_image` inspection evidence.
-- If clean lineage cannot be established, omit the visual, rebuild it natively, replace it with a cleaner equivalent visual, or disclose the limitation. Do not fill the gap with a plausible screenshot.
-- If no clean crop can be produced, do not keep a dirty screenshot as fallback. Rebuild the table/formula natively, replace with a cleaner equivalent visual, omit it, or disclose the limitation.
+- Do not infer a visual's semantic content from filenames, captions, surrounding paper prose, OCR, subtitles, or timestamps without inspecting the image itself.
+- Do not use OCR tools as a substitute for visual understanding.
+- Do not insert or keep a paper visual unless the source candidate and final rendered report page have both been visually inspected.
+- Do not call a report fixed when PDF export failed. Mark it `partial-with-limitation` unless rendered DOCX pages were inspected as an explicit substitute and the limitation is disclosed.
+- Do not accept final visuals that are readable only as standalone assets. They must be readable at final PDF page scale.
+- If source lineage cannot be established, omit the visual, rebuild it natively, replace it with a cleaner official equivalent, or disclose the limitation. Do not fill the gap with a plausible screenshot.
+- Keep paper captions and body paragraphs out of images. Rewrite their meaning as report prose, captions, or source notes.
+- Keep style changes separate from visual QA. If the existing Word format is approved, only change asset paths, crops, figure widths, captions, nearby explanation, and QA evidence.
 
-## Two-Level Inspection
+## New Research Report Gate
 
-Always inspect both levels:
+When the task is a new research report rather than a narrow crop fix, run these gates before final writing:
 
-1. Source asset inspection: open the candidate crop/source image with `view_image` before deciding what it is and whether it is complete.
-2. Rendered report inspection: after rebuilding/exporting, render the final PDF or DOCX pages and inspect the affected pages with `view_image`.
+1. Recency gate: verify every included paper/project is actually from the requested year or range, for example 2026. Record title, venue/status, date, DOI/arXiv/GitHub URL, and why it is in scope.
+2. Inclusion/exclusion gate: maintain a small table of candidate works, selected works, rejected works, and rejection reasons such as not 2026, no multimodal relevance, no agent/HPO relevance, or no retrievable source.
+3. Claim-evidence matrix: every major claim must map to at least one source paper, figure, table, formula, benchmark, or generated analysis chart.
+4. Theme-first synthesis: organize by problem chain and technical mechanism, not by one shallow paragraph per paper. For `多模态、LLM、检索技术发展情况`, cover problem, route, mechanism, evidence, limitation, and trend judgment across multimodal models, LLM agents/optimization, retrieval/reranking, and evaluation.
+5. No hallucinated references: references must have auditable identifiers. A paper without a verified PDF/abstract page/project page is not a confirmed source.
+6. Visual completeness: important figures, tables, formulas, and result curves from the papers should be extracted, rebuilt, or redrawn when they materially improve teaching clarity. Do not use one token figure to represent an entire paper.
 
-Passing only one level is not enough. A source crop can be clean but become unreadable, oversized, clipped, or badly placed in the Word report.
+## Source Acquisition
 
-After export, verify the PDF exists, is nonzero bytes, has a modified time after the rebuilt DOCX, and has a readable page count via `pdfinfo` or an equivalent tool. If this cannot be proven, do not mark PDF verification as passed.
+Before cropping or rebuilding a visual:
 
-Rendered report inspection must confirm: the visual is readable at final page scale, no original paper caption/body text remains, no row/column/axis/legend is clipped, and every changed visual appears on the expected page without layout spillover.
+1. Search the project artifacts first: existing paper PDFs, extracted page images, `paper_artifacts`, figures, tables, markdown conversions, and previous report assets.
+2. If the original paper is missing, locate the official PDF or accepted source, then appendix, supplementary PDF, arXiv ancillary files, author project pages, code repositories, and official figure/table assets.
+3. Render source PDFs at 240 DPI or higher for crop work. Use vector extraction when available and better than raster rendering.
+4. For dense figures/tables, build source-page contact sheets or tiled candidate sheets across adjacent pages and supplement pages for recall. Contact sheets help search, but final keep/reject decisions require inspecting the actual candidate image.
+5. Record missing source as `source_missing` and set the affected visual/report verdict to `partial-with-limitation`; do not silently accept a dirty report screenshot.
+
+Evidence syntax:
+
+- `source_inspected=view_image path=<absolute_path> page=<pdf_page> observation=<clean/dirty and why>`
+- `render_inspected=view_image path=<rendered_png> report_page=<page> dpi=<dpi> observation=<readable/clipped/dirty>`
+- `verdict=<pass|recrop|rebuild-native|omit|partial-with-limitation>`
 
 ## Visual Manifest
 
-Maintain a lightweight manifest for every inserted or changed paper visual. It can be a Markdown table, CSV, JSON, or a section in the work notes. The manifest must contain:
+Maintain a manifest for every inserted or changed paper visual. Copy `assets/visual-manifest-template.md` when useful.
 
-| Field | Required Meaning |
+Required fields:
+
+| Field | Meaning |
 | --- | --- |
-| `paper` | Paper name or short key. |
-| `source_pdf` | Original PDF or extracted page source. |
-| `source_page` | PDF page or page image inspected. |
+| `paper` | Paper title or short key. |
+| `source_pdf` | Original PDF, supplement, official asset, or source page image. |
+| `source_page` | PDF page, supplement page, or source asset path inspected. |
 | `source_id` | Figure/Table/Equation/Algorithm identifier when available. |
-| `visual_type` | figure, table, algorithm, formula, composite, generated-native, or rebuilt-native. |
-| `expected_objects` | Expected logical object count, for example `1 table`, `3 grouped subtables`, or `2 plot panels`. |
-| `clean_asset` | Final image path or native report object location. |
+| `visual_type` | figure, table, algorithm, formula, multi-panel, page-spanning-table, generated-native, rebuilt-native, or vector-asset. |
+| `expected_objects` | Expected logical object count, for example `1 table`, `3 grouped subtables`, `Fig. 6(a-c)`, or `2-page continued table`. |
+| `panel_map` | For multi-panel figures: panel labels, shared axes, shared legend/colorbar, global scale, and panels referenced by report prose. |
+| `crop_provenance` | Crop box in PDF points or image pixels, source render DPI, source image path/hash, crop tool/command, final dimensions, and per-fragment coordinates for stitched visuals. |
+| `generated_provenance` | For rebuilt/generated plots: script path, input source/table, parameters/seed, output format, and source comparison notes. |
+| `clean_asset` | Final image/vector path or native report object location. |
 | `report_page` | Final rendered DOCX/PDF page inspected. |
-| `source_inspected` | Evidence that the source crop/page was inspected with `view_image`. |
-| `render_inspected` | Evidence that the final rendered page was inspected with `view_image`. |
+| `source_inspected` | `view_image` evidence for the source candidate. |
+| `render_inspected` | `view_image` evidence for the final rendered page. |
+| `claim_supported` | Exact report claim this visual supports. |
+| `content_role` | Evidence, mechanism explanation, benchmark result, formula definition, pipeline overview, ablation, or cautionary limitation. |
+| `reader_takeaway` | What the reader should learn from this visual. |
+| `source_fact_vs_inference` | Separate source facts from report synthesis/inference. |
+| `content_explained` | Whether nearby prose explains axes/rows/columns/formula symbols/baselines/key comparison/limitation. |
 | `verdict` | pass, recrop, rebuild-native, omit, or partial-with-limitation. |
 
-Do not rely on narrative claims such as "I checked the figures." The manifest is the audit trail that prevents hidden dirty screenshots.
+Narrative statements like "I checked the figures" are not enough. The manifest is the audit trail.
 
 ## Crop Acceptance Checklist
 
-Reject the crop and continue searching or recropping if any item fails:
+Reject the candidate and continue searching or recropping if any item fails:
 
-- It contains original paper body paragraphs.
-- It contains original paper Figure/Table caption text outside the actual visual body.
-- It contains page headers, footers, page numbers, unrelated neighboring figures, or section headings.
-- It is a whole PDF page when the report only needs one figure, table, algorithm, formula, or chart.
-- A table row, final row, highlighted row, metric column, final column, bottom rule, or grouped subtable is cut off.
-- A figure axis title, tick labels, legend, subfigure label, colorbar, in-figure annotation, or required visual element is cut off.
-- A formula is surrounded by explanatory prose that should instead be typeset in the report text.
-- The visual has black padding, excessive blank canvas, blurred text, unreadable labels, or a bad aspect ratio caused by prior report scaling.
-- It captures an intermediate slide/animation/build-up state while a final complete state exists nearby.
-- It visually resembles a whole PDF page: page margins are visible, page headers/footers/page numbers remain, multiple sections are visible, or the aspect ratio is close to a full page.
+- Original paper body paragraphs, section headings, headers, footers, page numbers, or unrelated neighboring objects remain.
+- Original Figure/Table caption text is inside the image, unless it is a short label visually inside the figure/table body.
+- The crop is a whole PDF page or near-full-page screenshot when the report needs one figure, table, formula, algorithm, or chart.
+- A table header, final row, bottom rule, highlighted row, delta row, average column, final metric column, grouped subtable, or table-internal note is missing.
+- A figure axis, tick label, legend, colorbar, subfigure label, in-figure annotation, baseline, or panel marker is clipped.
+- A formula is surrounded by explanatory prose that should be retyped in the report.
+- Text, formulas, labels, table cells, legends, or panel markers are unreadable at final PDF page scale.
+- It captures an intermediate slide, animation, whiteboard, or dashboard build-up while the final complete state exists nearby.
+- It has black padding, excessive blank canvas, blurred text, bad aspect ratio, or report-scaling artifacts.
 
-Keep only visual-body content:
+Keep only visual-body content. Move explanatory meaning into the report's own Chinese prose, captions, and source notes.
 
-- For figures: axes, legends, colorbars, subfigure labels such as `(a)`, in-figure notes, arrows, labels, and plotted data.
-- For tables: top/bottom rules, header rows, all result rows, grouped subtables, highlighted rows, table-internal notes if they are visually part of the table.
-- For algorithms: the algorithm box/body, requirements, pseudocode lines, and return line.
+## Special Visual Rules
 
-Do not keep paper captions or surrounding prose just because they explain the figure. Rewrite that explanation as the report's own caption/source note.
+### Multi-Panel Figures
 
-## Pass/Fail Acceptance Tests
+- Inventory all panels, shared axes, shared legends/colorbars, global scales, and cross-panel labels before splitting.
+- Keep the full multi-panel figure only when the shared context is necessary and readable.
+- Split panels only if shared context is preserved or recreated in captions/prose.
+- If report prose references panel `(a)` or `(c)`, that panel and its labels must be readable in the final PDF.
 
-Every changed visual must pass these tests before delivery:
+### Page-Spanning Tables
 
-- `visual_manifest_required`: manifest row exists with source, clean asset, final report page, expected logical object count, and source/render inspection evidence.
-- `source_vs_render_double_pass`: both source crop and final rendered page pass the cleanliness/completeness checklist.
-- `one_logical_object_per_asset`: one asset contains one logical object unless the original paper figure is intentionally multi-panel and the report claim depends on the whole multi-panel visual.
-- `no_original_prose_or_caption_inside_image`: no original paper body paragraphs, section headings, page headers/footers, page numbers, or original Figure/Table caption paragraphs remain inside the image.
-- `table_completeness_sentinels`: before accepting a table, identify and check header row, final row, final metric column, bottom rule, highlighted/bold row, grouped subtable count, and table-internal notes.
-- `whole_page_detector`: reject full-page or near-full-page PDF screenshots.
-- `render_readability_gate`: reject rendered pages where table text, axis labels, legends, formula symbols, or subfigure labels are unreadable at normal report viewing size.
-- `stale_dirty_reference_scan`: final builder must not reference rejected dirty assets or risky stale names such as `whole`, `full`, `screenshot`, `mixed`, `caption`, `dirty`, `old`, or prior dirty crop names unless they are clearly archival and unused.
+- Detect `continued` tables across pages, supplements, or appendix fragments.
+- Record first, middle, and final fragments; repeated headers; bottom rule; final row; and per-fragment coordinates.
+- Prefer native rebuild or a stitched output with provenance when a raster crop would be unreadable.
+- Do not accept a table until the final row and final column are visible.
+
+### Equations
+
+- For equations embedded in prose, crop should fail. Retype the equation natively.
+- Preserve equation number, multi-line alignment, symbol definitions, and nearby explanation.
+- Explain in Chinese why the formula appears, then render the formula, then list every symbol.
+- Inspect the final rendered page for clipping, line overflow, and missing equation numbers.
+
+### Generated Or Rebuilt Visualizations
+
+- Prefer vector PDF/SVG/EMF for generated plots, diagrams, and extracted vector figures when the Word/PDF pipeline preserves them.
+- Use high-DPI PNG only with a recorded reason. Reject JPG for text-heavy visuals.
+- Record script path, input data/source table, parameters/seed, output format, and source comparison.
+- Spot-check axes, units, legends, scales, baselines, labels, and values against the source.
+- Use generated charts for paper counts by topic/month, method taxonomies, pipeline comparisons, benchmark trends, ablations, distributions, and section summary diagrams when they teach something.
+
+### Naming
+
+- Keep raw candidates neutral before inspection: `paper_p12_crop_003.png`, `candidate_table_02.png`.
+- Accepted assets should encode paper key, source id, panel/table range, page range, and mode: `xmas_table5_supp_p12-13_rebuilt_native`, `foo_fig3a-c_vector_clean`.
+- Do not use `complete` in a filename until the manifest verifies completeness.
+
+## Content Rigor Gate
+
+Every dense plot, benchmark table, multi-panel figure, generated chart, formula, or algorithm must have nearby "read the figure" prose in Chinese. Captions cannot replace this explanation.
+
+For each affected section, answer:
+
+- What problem or route is this section explaining?
+- What exact claim does the visual/formula/table support?
+- Which source fact supports that claim?
+- What technical meaning should the reader take away?
+- What limitation, hidden assumption, or non-proven conclusion should be stated?
+- How does this support the report's trend synthesis?
+
+Required gates:
+
+- `claim_evidence_traceability`: major claims map to source evidence or generated analysis with provenance.
+- `formula_pedagogy_gate`: formulas have plain Chinese explanation before, native formula rendering, symbol list after, and no prose screenshots.
+- `result_interpretation_gate`: result tables explain rows, columns, metrics, baselines, best/second-best, deltas, and limitations.
+- `figure_purpose_gate`: figures explain axes, legends, panels, first comparison target, key trend/anomaly, and what the figure does not prove.
+- `trend_synthesis_gate`: trend judgments are labeled as synthesis and grounded in multiple sources, not stated as source facts.
 
 ## Workflow
 
-1. Identify the final deliverables and builder:
-   - final `.docx` and `.pdf` paths;
-   - report generation script, usually a Python builder;
-   - image asset folder;
-   - original paper PDFs or page PNGs;
-   - already-approved format/style helpers.
+1. Identify deliverables and builder: final DOCX/PDF paths, report generation script, image asset folder, source PDFs, extracted page images, and style helpers.
+2. Locate high-risk visuals: search builder scripts for image filenames, inspect complaint pages, list old dirty crop names, and prioritize dense screenshots, tables, formulas, multi-panel figures, and benchmark pages.
+3. Acquire sources: locate original PDFs, supplements, official assets, appendix pages, and prior extraction artifacts. Render source pages at 240 DPI or higher.
+4. Recall candidates: inspect adjacent pages and supplement fragments. Use contact sheets for recall, then inspect final candidates directly.
+5. Classify each object: single figure, table, page-spanning table, algorithm, equation, multi-panel figure, composite screenshot, project-generated chart, or rebuilt-native object.
+6. Crop, split, rebuild, or omit: never screen-capture a PDF viewer, browser, Word page, or existing dirty report page as the final asset.
+7. Update report generation: replace paths, rewrite captions/source notes, add nearby explanatory prose, and preserve approved Word style.
+8. Remove stale references: search builder scripts and DOCX embedded media for rejected asset names/hashes.
+9. Rebuild DOCX, validate DOCX as zip, export PDF, render changed pages and neighbors, and inspect final pages.
+10. Iterate until the manifest, content gates, source inspection, and rendered-page inspection pass.
 
-2. Locate high-risk visuals:
-   - search builder scripts for image filenames;
-   - inspect rendered report pages around the user's complaint;
-   - list paper visual assets and old dirty crop names;
-   - prioritize pages containing dense paper screenshots, tables, formulas, or multi-panel benchmark figures.
-
-3. Classify each visual before cropping:
-   - single figure/chart;
-   - single table;
-   - algorithm box;
-   - formula/equation;
-   - composite block containing multiple figures/tables;
-   - paper page screenshot;
-   - project-generated explanatory figure.
-
-4. Inspect source candidates:
-   - open current dirty crop with `view_image`;
-   - open original paper page PNG/PDF render with `view_image`;
-   - inspect neighboring pages or adjacent candidate crops if the figure/table may continue or if the current crop is incomplete;
-   - use contact sheets or filenames only for recall, never for final keep/reject.
-
-5. Crop or split:
-   - recrop from the original paper page whenever possible;
-   - when recropping from a PDF, render the source page at 200-300 DPI or use direct PDF image/vector extraction;
-   - do not create final assets by screen-capturing a PDF viewer, browser, Word page, or existing dirty report page;
-   - split composite blocks into separate report visuals;
-   - keep crop names neutral until the image has been inspected;
-   - after inspection, use semantic filenames such as `xmas_table5_complete_clean.png` or `scalselect_table2_budget_clean.png`;
-   - use `clean`, `complete`, or specific table/figure numbers in filenames so future searches can distinguish them from rejected assets.
-
-6. Update report generation:
-   - replace dirty asset paths with clean assets;
-   - update captions/source notes to describe what the clean visual shows;
-   - move paper-caption meaning into the report's own prose;
-   - keep the approved Word style functions unchanged unless the user explicitly asks to change formatting.
-
-7. Remove stale references:
-   - search builder scripts for rejected dirty filenames;
-   - check old filenames are not referenced by the final builder;
-   - keep dirty assets only as archival source if useful, but never referenced in final output.
-
-8. Rebuild and render:
-   - compile/check the builder;
-   - rebuild DOCX;
-   - validate DOCX as a zip;
-   - export PDF;
-   - render PDF pages to PNG;
-   - inspect affected pages and at least one page before/after for layout spillover.
-
-9. Iterate until clean:
-   - if a table is clipped in the rendered report, adjust crop bounds or figure width;
-   - if a visual becomes too small, split it further or allocate a separate page;
-   - if an original caption/prose remains visible, recrop again;
-   - if a formula screenshot includes prose, typeset the formula in the report instead.
-
-## Handling Common Visual Types
-
-### Paper Tables
-
-Tables are accepted only when every relevant row and column is visible. For benchmark/result tables, the final row, highlighted method row, delta row, average column, and final metric column matter most.
-
-Rules:
-
-- Include table header, all compared methods/settings, all metric columns, and bottom rule.
-- Do not crop away small grouped subtables, such as three mini-tables under one Table number.
-- If Table 1 and Table 2 are stacked with captions between them, split them into `table1_clean` and `table2_clean`.
-- If the paper caption touches the table, prefer the table body and recreate caption information in the report; do not keep a full paragraph caption just to avoid tight cropping.
-- If a table is mostly text or numeric results and will be unreadable as an image at report scale, rebuild it as a report-native three-line table and cite the paper source. Use an image crop only when the visual layout itself is essential and remains readable after rendering.
-
-### Paper Figures
-
-Figures are accepted only when the graph or diagram can be understood without the original paper caption embedded in the image.
-
-Rules:
-
-- Include legends, axes, tick labels, colorbars, subfigure labels, and annotations that belong to the figure.
-- Exclude original paper caption and paragraph text below the figure.
-- If a multi-panel figure is too dense, split panels or use a wider figure width only if the rendered report remains readable.
-- If the report text references a specific panel, ensure that panel is visible and readable.
-
-### Algorithms
-
-For algorithm boxes:
-
-- Include title line if it is part of the algorithm box.
-- Include inputs/requirements, all numbered steps, branches, and return statement.
-- Exclude surrounding paragraphs explaining the algorithm.
-
-### Formulas
-
-Prefer report-native formulas when formulas are embedded in prose.
-
-Use a crop only when the formula itself is a visual artifact and the crop contains no unrelated explanatory paragraphs. Otherwise:
-
-- explain the formula in Chinese prose before the formula;
-- typeset the formula in the report;
-- list symbol meanings after it;
-- avoid copying a paper paragraph screenshot.
-
-### Composite Screenshots
-
-If one crop contains multiple logical objects, split it unless the paper figure itself is intentionally a single multi-panel figure.
-
-Keep multi-panel figures together only when they share one original figure number/caption and the report claim depends on the whole multi-panel visual. Otherwise split the panels or tables into separate report assets.
-
-Examples:
-
-- `Table 1 + Table 2 + captions` becomes two table crops.
-- `Figure 3 + Figure 4 + Table 1 + body text` becomes three clean assets.
-- `formula paragraph + result table` becomes report-native formula plus a table crop.
-
-## Known Failure Examples To Prevent
-
-- XMAS Figure 6 / Table 5: Figure 6 should show only the ARP bars and concept distribution; Table 5 must show all three grouped result tables completely. Do not include original paper caption or cut off the bottom results.
-- XMAS Figure 3 / Figure 4 / Table 1: do not use a page chunk containing figure captions, body text, and table captions. Split into separate clean assets.
-- ScalSelect Table 1 / Table 2: do not keep the original paper captions inside the image. Split the two result tables and preserve complete rows.
-- ScalSelect Table 6 / Table 7 / Figure 2: keep Table 6, Table 7, and the importance-score plots as separate visuals. Do not mix them with surrounding prose.
-- MLLM RFT formulas and results: formulas in prose should be report-native formulas; result tables should be table bodies only.
-- HPO vs LLM: do not screenshot a whole PDF page. Crop each curve/table separately and explain stop-loss implications in report prose.
-- MLIPilot: split scorecard, final result table, iteration history, convergence curve, and accept/reject matrix. Do not merge them into one unreadable chunk.
+For large reports with more than 10 affected visuals, more than 3 source papers, or more than 20 pages, split the QA by paper key or page range. Maintain one shared manifest and inspect affected pages plus neighbors. Render all pages to a contact sheet, then inspect suspicious pages full-size.
 
 ## Commands And Checks
 
-Use repo-specific paths, but the standard pattern is:
+Use resolved paths. Do not run literal placeholders such as `<builder.py>`.
 
 ```powershell
 $py = 'C:\Users\18357\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-& $py -m py_compile <builder.py>
-& $py <builder.py>
-& $py -m zipfile -t <final.docx>
+$builder = Resolve-Path -LiteralPath '<builder.py>'
+$docx = Resolve-Path -LiteralPath '<final.docx>'
+& $py -m py_compile $builder
+& $py $builder
+& $py -m zipfile -t $docx
 ```
 
-If `python-docx` fails on Chinese paths, copy the final DOCX to a short ASCII temp path for structural stats only. Do not move the final deliverable out of the project.
+For source rendering, use `scripts/render_pdf_pages.ps1` or the same pattern manually. Render at 240 DPI by default.
 
-If `python-docx` has trouble reading images or writing DOCX files under Chinese paths, use file-like streams for image insertion or stage only the build/input copy under a short ASCII temp directory, then copy the successfully validated DOCX back to the requested project path. The final deliverable path must remain inside the user-named workspace.
+```powershell
+Get-Command pdfinfo, pdftoppm | Out-Null
+$pdf = Resolve-Path -LiteralPath '<final.pdf>'
+$inspectDir = '<fresh-inspection-dir>'
+$renderDpi = 240
+$pdfInfo = pdfinfo $pdf
+pdftoppm -png -r $renderDpi -- $pdf (Join-Path $inspectDir 'page')
+Get-ChildItem -LiteralPath $inspectDir -Filter 'page-*.png' |
+  Where-Object { $_.LastWriteTime -gt (Get-Item -LiteralPath $pdf).LastWriteTime } |
+  Sort-Object Name
+```
 
-For Word PDF export on Windows, prefer `SaveAs2(..., 17)` if `ExportAsFixedFormat` hangs:
+If Poppler fails on Chinese paths, copy only the PDF/rendering input to a short ASCII temp path for inspection and keep final deliverables in the requested workspace.
 
-Run Word COM export in an isolated Windows PowerShell STA subprocess when possible, with an explicit timeout. Capture the task-created Word instance PID, release `$doc` and `$word` in that order, call `[GC]::Collect()` and `[GC]::WaitForPendingFinalizers()`, and clean up only the task-created Word PID. Never blanket-kill all `WINWORD.EXE` processes because the user may have Word documents open.
+For Word PDF export on Windows, use an isolated `powershell.exe -NoProfile -STA` subprocess with explicit timeout when possible. Capture the task-created Word PID, release `$doc` before `$word`, call finalizers, and clean only the task-created PID. If the PID cannot be proven, disclose the limitation and do not kill all Word processes.
+
+The following COM snippet is illustrative only; production export still needs STA, timeout, PID mapping, and task-local cleanup:
 
 ```powershell
 $word = New-Object -ComObject Word.Application
@@ -266,58 +222,57 @@ try {
   $doc.SaveAs2($outputPdf, 17)
   $doc.Close($false)
 } finally {
+  if ($doc) { [System.Runtime.InteropServices.Marshal]::ReleaseComObject($doc) | Out-Null }
   $word.Quit()
   [System.Runtime.InteropServices.Marshal]::ReleaseComObject($word) | Out-Null
+  [GC]::Collect()
+  [GC]::WaitForPendingFinalizers()
 }
-```
-
-Render and inspect final pages:
-
-Render into a fresh inspection directory for this build, or delete prior `page-*.png` files before rendering. Use quoted absolute paths, verify `pdftoppm` exists, render dense table/figure pages at 200 DPI or higher, and confirm the expected PNG files were created after the current PDF timestamp. If Poppler fails on Chinese paths, copy the PDF to a short ASCII temp path for rendering only; keep the final PDF in the project.
-
-```powershell
-pdftoppm -png -r 144 <final.pdf> <inspect_dir>\page
 ```
 
 Search for rejected references:
 
 ```powershell
-rg -n "dirty_asset_name|old_crop_name|whole_page_name" <builder.py>
+rg -n "dirty_asset_name|old_crop_name|whole_page_name|screenshot|caption|mixed|full|whole" <builder-or-report-dir>
 ```
 
-Also search for risky stale filename patterns such as `page`, `whole`, `full`, `screenshot`, `mixed`, `caption`, `dirty`, and `old`. A match is not automatically wrong, but each match must be explained as unused/archive or replaced.
+Also inspect DOCX embedded media and relationships by listing `word/media/*` and `word/_rels/document.xml.rels`. Confirm rejected filenames or old media hashes are absent, or record why they are archival and unused.
 
-If PowerShell output garbles Chinese, use UTF-8 Python reads or ASCII-only diagnostics. Do not assume garbled terminal output means the file itself is corrupt.
+If PowerShell output garbles Chinese, use UTF-8 Python reads or ASCII-only diagnostics. Do not assume terminal mojibake means the file itself is corrupt.
 
-## Word Style Preservation
+## Git And GitHub Verification
 
-When Wyatt says the existing Word format is good:
+When the task includes committing, pushing, publishing, or updating GitHub:
 
-- do not rewrite the cover, heading styles, page margins, three-line table helpers, body font, or caption style;
-- do not replace the whole report generator unless necessary;
-- make targeted changes to asset paths, crop files, figure widths, captions, and nearby explanatory text;
-- keep the report's own Chinese captions/source notes, not original paper captions embedded in screenshots.
+- Verify `git status --short` before and after; disclose unrelated changes rather than hiding them.
+- Confirm final artifacts are tracked or explicitly local-only.
+- Use `git log -1 --name-status` to verify the expected skill files/artifacts are in the commit.
+- Confirm local HEAD matches the pushed remote branch with `git ls-remote` or `gh pr view`.
+- Verify the remote content exists through GitHub API or raw file fetch when possible.
+- Final response should include branch, commit SHA, GitHub URL, and any artifact not uploaded.
 
 ## Final Acceptance Gate
 
-Before final response, verify and be able to state:
+Before final response, be able to state:
 
-- DOCX rebuilt successfully.
-- DOCX zip test passed.
-- PDF was exported or a clear render limitation was disclosed.
-- PDF/pages were rendered to PNG if possible.
-- Affected pages were visually inspected with `view_image`.
-- Old dirty image filenames are no longer referenced by the final builder.
-- No Word COM background process created by the task remains running.
-- Final DOCX/PDF paths are inside the user-named workspace unless the user asked otherwise.
-- For every affected visual, the final notes can state the source crop inspected, rendered report page PNG inspected, page number, render DPI, and verdict.
+- DOCX rebuilt successfully and DOCX zip test passed, when a report was built.
+- PDF export succeeded, or the render limitation is explicitly disclosed.
+- Final PDF pages were rendered to PNG and inspected. If impossible, rendered DOCX pages were inspected as a substitute and marked as a limitation.
+- Changed pages plus neighboring pages were inspected; for large edits, all pages were contact-sheet scanned and suspicious pages opened full-size.
+- Every affected visual has a manifest row with source lineage, crop provenance, source `view_image` evidence, final render `view_image` evidence, claim supported, content role, and verdict.
+- No original paper body text, paper captions, page headers/footers, whole-page screenshots, clipped rows/columns, or unreadable final-scale labels remain.
+- Equations embedded in prose were retyped natively, not kept as prose screenshots.
+- Generated charts have provenance and source comparison.
+- References/citations are auditable and no hallucinated or out-of-scope papers are presented as confirmed sources.
+- Old dirty image filenames or hashes are no longer referenced by the final builder/DOCX media relationships.
+- No Word COM process created by the task remains running.
 
 ## Final Response
 
 Keep the final answer concise. Include:
 
-- final DOCX/PDF paths;
-- the classes of visual problems fixed, such as dirty paper captions, incomplete tables, whole-page screenshots, formula prose screenshots;
-- verification summary: zip test, PDF page count/render, key pages inspected, stale references removed;
-- source/render evidence for affected visuals at a concise level;
-- any limitation that remains.
+- final DOCX/PDF paths or skill/GitHub artifact paths;
+- classes of problems fixed, such as dirty paper captions, incomplete tables, whole-page screenshots, formula prose screenshots, shallow evidence, or citation gaps;
+- verification summary: zip test, PDF page count/render, pages inspected, stale references removed, GitHub commit/remote check if applicable;
+- source/render evidence at a concise level;
+- any remaining limitation.

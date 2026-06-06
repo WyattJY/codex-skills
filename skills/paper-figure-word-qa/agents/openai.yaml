@@ -1,0 +1,7 @@
+interface:
+  display_name: "Paper Figure Word QA"
+  short_description: "Audit paper-derived visuals, formulas, tables, citations, and rendered Word/PDF reports."
+  default_prompt: "Use $paper-figure-word-qa to audit a Chinese Word/PDF research report for dirty paper screenshots, incomplete tables, weak visual evidence, and final render issues."
+
+policy:
+  allow_implicit_invocation: true
