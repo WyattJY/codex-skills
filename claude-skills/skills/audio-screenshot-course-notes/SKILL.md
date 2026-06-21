@@ -24,11 +24,22 @@ Create a durable Markdown course note from a recording and related screenshots. 
    - Inspect handwriting, highlights, arrows, and progressive PPT reveals as teaching signals. Integrate their meaning into normal explanatory prose; do not write mechanical labels such as `音频依据：` or `涂鸦识别：` in the final note.
    - **Do NOT rename screenshots.** Use the original filenames as-is. Obsidian's file watcher on ExFAT volumes may not detect renamed files. Copy screenshots into `assets/` preserving original names.
    - **Image link format**: Use Obsidian angle-bracket syntax for paths with spaces or CJK characters: `![说明](<asset/目录名/播放器截图20260606081848.jpg>)`. Do NOT use `assets/01_screenshot.jpg` style renamed files.
+   - For this user's manually captured lesson screenshots, default to using every non-hidden image in the lesson asset folder. Do not drop screenshots merely because they look progressive or partially overlapping; the act of screenshotting is a priority marker.
+   - If an image is corrupt, unreadable, or truly duplicate with no additional teaching value, leave it out only with an explicit `未使用截图说明` entry in the note explaining the filename and reason.
    - Treat screenshots as teaching evidence. Do not dump them in a gallery; each inserted image must support the exact paragraph or mechanism immediately around it.
-   - When several screenshots show a progressive reveal, prefer the most complete/readable one, and include intermediate screenshots only if they teach a distinct step.
+   - When several screenshots show a progressive reveal, include the sequence as a teaching progression with concise captions. Use the most complete frame for summary, but keep intermediate frames when they show how the explanation builds.
 
 3. Transcribe audio faithfully.
-   - Use local ASR when possible. For Chinese technical lectures, prefer `faster-whisper` with `large-v3-turbo` or the strongest already-installed local model.
+   - Reuse an existing transcript/cache only when it matches the source audio duration and segment count.
+   - For Chinese technical lectures, prefer MiMo ASR when `MIMO_ASR_API_KEY` or an approved Keychain secret is available: use `scripts/transcribe_mimo_asr.py` with `mimo-v2.5-asr`, `language=zh`, and the Token Plan/OpenAI-compatible base URL. Never hardcode or print the key.
+   - MiMo ASR currently accepts wav/mp3 data URLs through `chat/completions`; base64 audio must stay under 10MB per request. For long `.m4a`/course recordings, let the script transcode with `ffmpeg` and use note-grade short chunks: default silence-aware segmentation, target 25 seconds, minimum 10 seconds, maximum 30 seconds. If silence detection cannot find reliable cut points, the script falls back to fixed short chunks.
+   - The MiMo transcript script must preserve chunk start/end timestamps and write both a short auxiliary summary and the transcript text for each chunk. The summary is for note drafting only; the transcript remains the source of truth.
+   - Do not use MiMo to write, polish, structure, or synthesize the final course note. MiMo's role ends at speech-to-text output and lightweight transcript-side chunk summaries; Codex/Claude must do the note writing, screenshot integration, source-code reading, and pedagogical restructuring.
+   - After MiMo returns text, run deterministic course cleanup: normalize common technical ASR errors such as `RPE/LP/LPE -> RoPE` and `西塔/奇塔 -> theta`.
+   - For formula-dense technical courses, treat MiMo as a short-segment ASR source only. Before writing the main note, run a two-step correction pass:
+     1. Apply a term dictionary cleanup for high-risk tokens, especially `RoPE`, `theta`, `cos/sin`, `Q/K/V`, `mask`, `view_as_complex`, model names, function names, tensor-shape terms, and other course-specific English/code tokens.
+     2. Reverse-check key claims against screenshots, formulas, notebooks, and real source code before they enter the main note. Do not let ASR surface errors become final explanations.
+   - When MiMo is unavailable, the audio is confidential, or timestamps must be finer, use local ASR. For Chinese technical lectures, prefer `faster-whisper` with `large-v3-turbo` or the strongest already-installed local model.
    - Keep caches and virtual environments under `/Volumes/T7/codex_cache/...` when installing tools.
    - Emit a raw transcript with timestamps before creating polished notes.
    - Preserve technical terms, code names, numbers, ratios, model names, and English tokens. Mark low-confidence fragments as `（待复核：...）` rather than silently inventing text.
@@ -47,7 +58,15 @@ Create a durable Markdown course note from a recording and related screenshots. 
    - Include concise code interpretation near the screenshot and explanation; do not merely list file paths at the top.
    - **Code "what to look for" pattern**: After each code block, do not just paste the code. Add a numbered list of "看点" explaining which specific line, parameter, or shape to notice and why. For example: "这段代码要看三个关键点：1. **`np.argsort(probs)[-K:]`**：argsort 默认升序，取最后 K 个就是概率最高的 K 个。2. **`np.zeros_like(probs)`**：初始化全零数组，非 Top-K 位置保持为零。3. **`/ np.sum(...)`**：归一化，确保概率总和为 1。"
 
-5. Build the Markdown note.
+5. Build a teaching evidence matrix before writing.
+   - Before drafting, create a working matrix with one row per major teaching claim. This can be a scratch note or in-memory outline, but the final note must reflect it.
+   - Each row should answer: `Why is this concept introduced?`, `What problem does it solve?`, `Which screenshot proves or clarifies it?`, `Which transcript segment supports it?`, `Which source line or notebook cell verifies it?`, and `What breaks if implemented or understood incorrectly?`
+   - Every user-provided screenshot/image in the lesson asset folder must map to a teaching row, or to the explicit `未使用截图说明` exception list. Missing images without explanation mean the note is incomplete.
+   - Use the matrix to decide note order. Do not follow screenshot order or transcript order when that would weaken the teaching chain.
+   - If the draft feels like parallel concept summaries, rewrite it into a problem chain: previous lesson or limitation -> new concept motivation -> mechanism -> screenshot evidence -> source-code evidence -> failure mode -> takeaway.
+   - Treat the user's accepted RoPE-style notes as the quality bar: the note should read like an experienced teacher guiding a reader through why each idea follows from the previous one.
+
+6. Build the Markdown note.
    - **Title format**: `# 标题｜大模型算法工程师视角`
    - **Source metadata**: Use Obsidian callout block, not plain text:
      ```
@@ -87,8 +106,9 @@ Create a durable Markdown course note from a recording and related screenshots. 
    - When generated figures are added, inspect them visually before insertion, place them immediately beside the explanation they support, and mention the matching PDF asset if one was generated.
    - **Output location**: Save the main note at the course directory root (e.g., `/path/to/course/阶段核心技术精讲与实战/标题.md`), NOT inside `assets/`. The transcript stays in `assets/<lesson>/`. Screenshots stay in `assets/<lesson>/assets/`.
 
-6. Verify before completion.
+7. Verify before completion.
    - Run `scripts/check_markdown_assets.py <note.md>` to confirm all local image links resolve.
+   - Run `scripts/check_course_note_quality.py <note.md> --asset-dir <lesson-asset-dir>` for synthesized course notes whenever a lesson asset folder exists. This must pass before claiming the note follows this skill. The checker enforces callouts, RoPE-grade teaching structure, screenshot captions, source anchors, code-source adjacency, TOC targets, chapter summaries, pedagogical signals, and full coverage of non-hidden lesson images.
    - Check that the main note exists in the requested output directory, the transcript note exists next to the audio under `assets/<lesson>/`, images exist in `assets/`, and no source files were modified.
    - Skim the main note to ensure the transcript has been removed from the body and that screenshots are interleaved with explanatory prose.
    - Verify clickable table-of-contents links resolve to existing headings when a TOC is present.
@@ -117,6 +137,7 @@ Then transcribe with word or segment timestamps. If GPU support is unavailable, 
 - For technical project courses, a good note should read like a large-model algorithm engineer's reproducible project analysis, not like meeting minutes: include mental models, data-flow or control-flow interpretation, code-level evidence, common mistakes, and self-check questions.
 - A strong note reads like an experienced teacher guiding the reader: motivation first, then the central claim, mechanism, evidence, and takeaway. Figures should feel like part of the lesson, not attachments after the fact.
 - Use mermaid diagrams for process flows, architecture overviews, and data flow visualization. Use Python matplotlib/seaborn for plots and distributions. Do not add decorative graphics.
+- High-signal ideas must be visually scannable in Obsidian callouts. Use `[!important]` for central concepts and mechanism summaries, `[!warning]` for traps and failure modes, and `[!info]` for source metadata. Do not rely on plain headings alone for these teaching signals.
 - Keep source provenance: audio path, screenshot paths, output path, ASR model/tool, and date.
 - For long lectures, create section timestamps and a compact "重点复习" section.
 - Use Obsidian callout syntax for key information: `> [!info]` for metadata, `> [!important]` for core concepts, `> [!warning]` for pitfalls.
@@ -132,6 +153,7 @@ Then transcribe with word or segment timestamps. If GPU support is unavailable, 
 - Producing only a summary when the user asked for precise transcription.
 - Over-polishing the transcript and losing spoken technical details.
 - Assuming screenshot order equals lecture order without looking at image contents.
+- Omitting user-captured screenshots without an explicit `未使用截图说明` reason.
 - Keeping the transcript inside the main note when it should be a separate reference document.
 - Listing source files once but not using them where the explanation needs them.
 - Writing captions that merely restate the image filename instead of explaining what the image proves.
@@ -144,6 +166,7 @@ Then transcribe with word or segment timestamps. If GPU support is unavailable, 
 - **Missing callout blocks** (`> [!info]`, `> [!important]`, `> [!warning]`). Key information should use Obsidian callout syntax, not plain text.
 - Avoiding useful generated visualizations when a mask, shape contract, pipeline, or comparison would be much clearer as a mermaid diagram.
 - Producing a shallow summary for a technical course when the user expects study notes that can support later implementation.
+- Letting MiMo write or restructure the course note. In this workflow MiMo is ASR-only; the agent writes the final note.
 - Mentioning source files without explaining inputs, outputs, core logic, failure modes, and why those lines matter for the lecture point.
 - Putting all script links in a distant source list while quoted code blocks have no adjacent clickable script link. Every important quoted code block should be followed by its own `vscode://file` source link.
 - Saving large caches or generated assets on the system disk when T7 is the intended workspace.
