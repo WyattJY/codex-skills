@@ -116,12 +116,14 @@ Build the notes from all of the following when available:
 - the video's original cover image and key metadata
 - on-screen diagrams, formulas, tables, plots, and architecture slides
 - subtitle explanations, examples, and verbal emphasis
+- short high-signal original dialogue segments in interview, panel, podcast, or conversation videos, when the exact wording adds presence, humor, intuition, or unusually compact information
 - code snippets shown or described in the talk
 
 Skip content that does not contribute to the actual lesson:
 
 - greetings
 - small talk
+- routine back-and-forth that does not add information, tension, humor, intuition, or teaching value
 - sponsorship
 - channel logistics (一键三连, 关注投币, etc.)
 - closing pleasantries
@@ -135,6 +137,12 @@ Keep the speaker's closing discussion when it carries actual teaching value, suc
 2. Organize the document with `\section{...}` and `\subsection{...}`.
    Reconstruct the teaching flow when needed; do not blindly mirror subtitle order.
    Each section should answer, in order when applicable: what problem is being solved, why simpler views are insufficient, what the core idea is, how it works, and what the reader should retain.
+
+   Avoid overusing the "不是……而是……" sentence pattern.
+   Use it only when the video itself establishes a real contrast and that contrast materially clarifies the mechanism.
+
+   Do not use vague or overly abstract phrasing.
+   Ground claims in concrete mechanisms, examples, variables, steps, observed phenomena, timestamps, figures, or speaker-provided evidence whenever possible.
 
 3. Start from `assets/notes-template.tex`.
    Fill in the metadata block, including the local cover image path, and replace the body content block with the generated notes.
@@ -164,11 +172,15 @@ Keep the speaker's closing discussion when it carries actual teaching value, suc
    use `importantbox` for core concepts the reader must walk away with, including formal definitions, central claims, key mechanism summaries, theorem-like statements, critical algorithm steps, and compact restatements of the main idea after a dense explanation
    use `knowledgebox` for background and side knowledge that improves understanding without being the main thread, including prerequisite reminders, historical lineage, engineering context, design tradeoffs, terminology comparisons, and intuition-building analogies
    use `warningbox` for common misunderstandings and failure points, including notation overload, hidden assumptions, misleading heuristics, easy-to-make implementation mistakes, causal confusions, off-by-one style reasoning errors, and places where the speaker contrasts a wrong intuition with the correct one
+   use `dialoguebox` only for conversation-heavy videos when a brief original dialogue segment is high-information, funny, vivid, or especially intuitive, and preserving the speaker's wording gives the reader a stronger sense of being present in the discussion
+   a `dialoguebox` may contain either one exchange or several tightly connected turns, such as a question, follow-up, pushback, clarification, and answer sequence
+   keep `dialoguebox` snippets short: preserve speaker labels and a concrete timestamp or interval, lightly clean obvious ASR errors only when confident, and follow the box with prose that explains why the dialogue segment matters
+   do not use `dialoguebox` for greetings, filler, long transcript dumps, or dialogue that would be clearer as ordinary summarized exposition
    there is no quota of one box per section; add multiple boxes in a section when the material contains multiple distinct teaching signals
    each box should carry a specific pedagogical payload rather than generic emphasis
    prefer placing a box immediately after the paragraph, derivation, or example that motivates it
    routine exposition should stay in normal prose; boxes are for high-signal takeaways, not decoration
-   figures must stay outside `importantbox`, `knowledgebox`, and `warningbox`
+   figures must stay outside `importantbox`, `knowledgebox`, `warningbox`, and `dialoguebox`
 
 10. End every major section with `\subsection{本章小结}`.
     Add `\subsection{拓展阅读}` when there are one or two worthwhile external links.
@@ -291,7 +303,7 @@ Deliver all of the following:
 - the final `.tex` file
 - the downloaded cover image referenced on the front page
 - any extracted or generated figure assets referenced by the document
-- the compiled PDF
+- the compiled PDF (must use a reasonable Chinese filename, e.g., `[中文视频标题]_notes.pdf`)
 - the Whisper-generated SRT subtitle file, if speech-to-text was used
 
 ## Asset
