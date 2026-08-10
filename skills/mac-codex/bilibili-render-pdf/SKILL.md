@@ -295,11 +295,10 @@ Before delivery, verify all of the following:
 
 Deliver all of the following:
 
-- the final `.tex` file (must use a reasonable Chinese filename, e.g., `[中文视频标题]_notes.tex`)
+- the Whisper-generated SRT subtitle file, if speech-to-text was used
 - the downloaded cover image referenced on the front page
 - any extracted or generated figure assets referenced by the document
-- the compiled PDF (must use a reasonable Chinese filename, e.g., `[中文视频标题]_notes.pdf`)
-- the Whisper-generated SRT subtitle file, if speech-to-text was used
+- the final `.tex` file and the compiled `.pdf` file (must use a reasonable Chinese filename, e.g., `[中文视频标题]_notes.tex` and `[中文视频标题]_notes.pdf`)
 
 ## Asset
 
