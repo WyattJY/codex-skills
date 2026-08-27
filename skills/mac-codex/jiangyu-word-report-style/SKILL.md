@@ -1,6 +1,6 @@
 ---
 name: jiangyu-word-report-style
-description: Generate or edit Word/DOCX reports in Jiangyu's internship handover report format. Use whenever this user asks for a Word document, Word report, docx deliverable, technical report, implementation plan, interview QA report, handover document, or asks to follow the 019dd837-de97-7cf2-8114-baf80bad0e1f handover Word style, including Chinese reports that need the same fonts, spacing, cover, tables, and verification workflow.
+description: Use when creating or editing Chinese Word/DOCX reports, technical manuals, implementation plans, or handover documents, especially when formulas, algorithms, workflows, theorems, experiment data, or system relationships need clear visual explanation and a concept overview figure.
 ---
 
 # Jiangyu Word Report Style
@@ -19,6 +19,18 @@ Use this skill as the style layer for the user's Word deliverables. Pair it with
    - run the documents skill renderer to PNG/PDF when LibreOffice is available;
    - on Windows, if LibreOffice is absent, try Microsoft Word COM export to PDF;
    - disclose clearly if visual render QA could not be completed.
+
+## Visual Explanation and Concept Figures
+
+When a report contains a hard-to-understand formula, algorithm, workflow, theorem, experiment result, or system relationship, assess whether a visual explanation will reduce the reader's cognitive load. For conceptual or explanatory artwork, **REQUIRED SUB-SKILL:** use `paint-with-code` and keep its editable source beside the rendered PNG.
+
+1. At the start of a substantial report, consider an overview figure that maps the subject, inputs, main process, outputs, and evaluation or application context. Place it after the cover/basic-information page and before the first major body section, unless the user specifies another location.
+2. For formulas, workflows, theorems, and experiment data, make the visual explain the exact symbols, stages, relationships, or trends used in the text. Never invent values, labels, or conclusions; use the supplied or locally verified data.
+3. Follow the `paint-with-code` workflow: retain `index.html`, `sketch.js`, any local assets, and the final PNG. Render in a WebGL2-capable browser and check that the image is nonblank, legible, correctly framed, and free of accidental overlap.
+4. Insert the verified PNG into the DOCX at the point where it helps comprehension, add a concise figure caption, and reference it from the surrounding text. Keep the source files with the report or in a clearly named companion directory.
+5. Use a precise chart, SVG, Draw.io diagram, or Word equation when exact geometry, typography, or numerical plotting is required; `paint-with-code` may provide a conceptual companion figure, but must not replace exact formulas or quantitative evidence.
+
+Pair this visual workflow with `documents:documents` when DOCX rendering or layout QA is available.
 
 ## Style Contract
 

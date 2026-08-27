@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paint with Code"
+  short_description: "Create editable p5.brush paintings and PNGs"
+  default_prompt: "Use $paint-with-code to create an editable code-painted illustration and render a verified PNG."
